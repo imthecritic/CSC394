@@ -14,6 +14,34 @@ the application. On first run you will be asked to create an admin user. You can
 access your application from 'https://csc394project-ebarns.c9users.io/' and the admin page from 
 'https://csc394project-ebarns.c9users.io/admin'.
 
+## Setting up Cloud9 enviroment
+
+Fork a copy of ebarns on github
+
+start a new blank c9 workspace 
+
+type the following on command line:
+
+    nano requirements.txt
+	    "django>=1.10,<1.11"
+
+    python3 -m venv env
+
+    sudo apt-get install python3.4-venv
+
+    python3 -m venv env
+
+    env/bin/pip install --upgrade pip
+
+    env/bin/pip install --upgrade -r requirements.txt
+    
+    to run:
+    
+    env/bin/python manage.py migrate
+    
+    env/bin/python manage.py runserver 0.0.0.0:8080
+
+
 ## Starting from the Terminal
 
 In case you want to run your Django application from the terminal just run:
@@ -24,7 +52,7 @@ In case you want to run your Django application from the terminal just run:
 
 2) Run Django
 
-    $ python manage.py runserver $IP:$PORT
+    $ python manage.py runserver 0.0.0.0:8080
     
 ## Configuration
 
