@@ -25,7 +25,9 @@ type the following on command line:
     nano requirements.txt
 	    "django>=1.10,<1.11"
 
-    python3 -m venv env
+    sudo apt-get update
+    
+    sudo apt-get upgrade
 
     sudo apt-get install python3.4-venv
 
@@ -35,6 +37,12 @@ type the following on command line:
 
     env/bin/pip install --upgrade -r requirements.txt
     
+    env/bin/python manage.py create super user
+    
+    username: admin
+    email : <either your email or admin@localhost>
+    password <crate a password>
+
     to run:
     
     env/bin/python manage.py migrate
