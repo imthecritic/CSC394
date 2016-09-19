@@ -34,6 +34,12 @@ type the following on command line:
     env/bin/pip install --upgrade pip
 
     env/bin/pip install --upgrade -r requirements.txt
+    
+    to run:
+    
+    env/bin/python manage.py migrate
+    
+    env/bin/python manage.py runserver 0.0.0.0:8080
 
 
 ## Starting from the Terminal
@@ -46,7 +52,7 @@ In case you want to run your Django application from the terminal just run:
 
 2) Run Django
 
-    $ python manage.py runserver $IP:$PORT
+    $ python manage.py runserver 0.0.0.0:8080
     
 ## Configuration
 
