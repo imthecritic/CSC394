@@ -20,3 +20,5 @@ def plan(request):
 def settings(request):
     pass
 
+def about(request):
+    pass
