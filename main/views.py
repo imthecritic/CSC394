@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
+from form import RegistrationForm
 
 #INDEX PAGE
 def index(request):
@@ -11,7 +12,16 @@ def login(request):
     return render(request, 'main/login.html', {})
 
 def register(request):
-    pass
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            return HttpResponse('Registered')
+            
+    else:
+        form = RegistrationForm()
+        
+    return render(request,'main/register.html',{'form': form})
+
 
 def coursecatalog(request):
     pass
