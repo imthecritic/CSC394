@@ -18,6 +18,7 @@ class RegistrationForm(UserCreationForm):
         user.last   = self.cleaned_data['Last name']
         user.email  = self.cleaned_data['Email']
         user.mjr    = self.cleaned_data['Major']
+        
         user.enrled = self.cleaned_data['Enrolled']
         user.fclty  = self.cleaned_data['Faculty']
         
