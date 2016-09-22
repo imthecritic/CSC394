@@ -32,6 +32,8 @@ class DegreeRequirements(models.Model):
     
 #extend Django User model
 class Users(User):
+#    first       = models.CharField(max_length=128)
+#    last        = models.CharField(max_length=128)
     degree      = models.ForeignKey(Degrees)
     creditCnt   = models.IntegerField()
     isEnrolled  = models.BooleanField()
