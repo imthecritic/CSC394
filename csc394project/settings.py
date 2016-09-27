@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'main',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -56,7 +58,9 @@ ROOT_URLCONF = 'csc394project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            './main/templates/',
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
