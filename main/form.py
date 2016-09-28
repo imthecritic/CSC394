@@ -11,7 +11,6 @@ class AccountForm(forms.Form):
     enrled  = forms.BooleanField(initial=True, label="Enrolled")
     fclty   = forms.BooleanField(initial=True, label="Faculty")
     
-    
 class RegistrationForm(UserCreationForm):
     first   = forms.CharField(label="First name",required=True)
     last    = forms.CharField(label="Last name", required=True)

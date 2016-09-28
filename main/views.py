@@ -28,7 +28,7 @@ def loginPage(request):
 
 def logoutPage(request):
     logout(request)
-    return render(request, 'main/index.html', {})
+    return HttpResponseRedirect('login')
     
 def register(request):
     if request.method == 'POST':
@@ -53,8 +53,9 @@ def plan(request):
 def account(request):
     #user = Users.objects.get()
     usr = request.user
+    classes_taken = []
     form = AccountForm(initial={'first':usr.first_name,'last':usr.last_name,'email':usr.email,'usrname':usr})
-    return render(request,'main/account.html',{'form':form})
+    return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken})
 
 def about(request):
     pass
