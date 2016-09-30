@@ -16,8 +16,8 @@ class RegistrationForm(UserCreationForm):
     last    = forms.CharField(label="Last name", required=True)
     email   = forms.EmailField(label="Email", required=True)
     mjr     = forms.ChoiceField(label="Major", choices=[(1,'BS CS'),(2,'BS IT'),(3,'MS CS'),(4,'MS IT')],required=True)
-    enrled  = forms.BooleanField(initial=True, label="Enrolled")
-    fclty   = forms.BooleanField(initial=True, label="Faculty")
+    enrled  = forms.BooleanField(required=False, label="Enrolled")
+    fclty   = forms.BooleanField(required=False, label="Faculty")
     
         
     def save(self,commit = True):
