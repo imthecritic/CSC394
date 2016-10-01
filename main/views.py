@@ -43,18 +43,25 @@ def register(request):
     return render(request,'main/register.html',{'form': form})
 
 
-def coursecatalog(request):
-    pass
+def browse(request):
+    return render(request,'main/browse.html',{})
 
 def plan(request):
-    pass
+    return render(request,'main/plan.html',{})
 
 @login_required(login_url='login')
 def account(request):
-    #user = Users.objects.get()
-    usr = request.user
     classes_taken = []
-    form = AccountForm(initial={'first':usr.first_name,'last':usr.last_name,'email':usr.email,'usrname':usr})
+    #user = Users.objects.get()
+    if request.method == 'POST':
+        form = AccountForm(request.POST)
+        if form.is_valid():
+            form.save(request.user)
+    else:
+        usr = request.user
+        #if user is faculty add a list of students they can assume identity of. 
+        form = AccountForm(initial={'first':usr.first_name,'last':usr.last_name,'email':usr.email,'usrname':usr})
+        
     return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken})
 
 def about(request):

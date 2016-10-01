@@ -17,7 +17,7 @@
               <ul class="nav navbar-nav">
                 <li><a href=".">Home</a></li>
                 <li><a href="plan">Plan</a></li>
-                <li><a href="coursecatalog">Browse</a></li>
+                <li><a href="browse">Browse</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
@@ -36,11 +36,5 @@
             
             {% endblock %}
         </div>
-
-        <script>
-          $('.carousel').carousel({
-          interval: 2000
-          })
-        </script>
     </body>
 </html>
