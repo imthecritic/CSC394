@@ -3,7 +3,7 @@ from models import Users
 from django.contrib.auth.forms import UserCreationForm
 
 class AccountForm(forms.Form):
-    first   = forms.CharField(label="First name",required=True)
+    first   = forms.CharField(label="First name", required=True)
     last    = forms.CharField(label="Last name", required=True)
     usrname = forms.CharField(label="Username", required=True)
     email   = forms.EmailField(label="Email", required=True)
@@ -23,7 +23,16 @@ class AccountForm(forms.Form):
         if commit:
             user.save()
         return user
-        
+ 
+class StudentReadOnly(forms.Form):
+    first   = forms.CharField(label="First name", disabled=True, required=True)
+    last    = forms.CharField(label="Last name", disabled=True, required=True)
+    usrname = forms.CharField(label="Username", disabled=True, required=True)
+    email   = forms.EmailField(label="Email", disabled=True, required=True)
+    mjr     = forms.ChoiceField(label="Major", disabled=True, choices=[(1,'BS CS'),(2,'BS IT'),(3,'MS CS'),(4,'MS IT')],required=True)
+    enrled  = forms.BooleanField(required=False, disabled=True, label="Enrolled")
+    
+    
 class RegistrationForm(UserCreationForm):
     first   = forms.CharField(label="First name",required=True)
     last    = forms.CharField(label="Last name", required=True)

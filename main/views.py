@@ -61,7 +61,6 @@ def account(request):
         usr = request.user
         #if user is faculty add a list of students they can assume identity of. 
         form = AccountForm(initial={'first':usr.first_name,'last':usr.last_name,'email':usr.email,'usrname':usr})
-        
     return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken})
 
 def about(request):
