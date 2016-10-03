@@ -19,5 +19,13 @@
         </div>
         
         </form>
+        {% if permission %}
+        <h3>Students</h4>
+        {% for stu in studentlst %}
+            <div class="row">
+                <input class="btn btn-default" value="{{ stu.usr_acct.username }}">
+            </div>
+        {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

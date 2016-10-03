@@ -42,15 +42,15 @@ def register(request):
         if form.is_valid():
             user = form.save()
             print(user.id)
-            a = User.objects.get(id=user.id)
-            newusr = Users()
-            newusr.usr_acct = a
-            newusr.isEnrolled = request.POST['enrled']
-            newusr.isFaculty = request.POST['fclty']
-            deg = Degrees.objects.all()
-            deg = deg[0]
-            newusr.degree = deg
-            newusr.save()
+            # a = User.objects.get(id=user.id)
+            # newusr = Users()
+            # newusr.usr_acct = a
+            # newusr.isEnrolled = request.POST['enrled']
+            # newusr.isFaculty = request.POST['fclt'] if request.POST['fclty'] != None else False
+            # deg = Degrees.objects.all()
+            # deg = deg[0]
+            # newusr.degree = deg
+            # newusr.save()
             return render(request,'main/login.html',{})
             
     else:
@@ -68,8 +68,9 @@ def plan(request):
 @login_required(login_url='login')
 def account(request):
     classes_taken = []
-    #user = Users.objects.get()
-    
+    studentlst = Users.objects.filter(isFaculty=False)
+    permission = False
+    print (studentlst)
     if request.method == 'POST':
         form = AccountForm(request.POST)
         if form.is_valid():
@@ -77,9 +78,10 @@ def account(request):
     else:
         usr = Users.objects.get(usr_acct=request.user.id)
         usrinfo = usr.usr_acct
+        permission = usr.isFaculty
         #if user is faculty add a list of students they can assume identity of. 
         form = AccountForm(initial={'first':usrinfo.first_name,'last':usrinfo.last_name,'email':usrinfo.email,'usrname':usrinfo.username,'fclty':usr.isFaculty,'enrled':usr.isEnrolled})
-    return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken})
+    return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken, 'studentlst':studentlst,'permission':permission})
 
 def about(request):
     pass
