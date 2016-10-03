@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from models import Users, Degrees
-from frms import AccountForm, RegistrationForm
+from frms import AccountForm, RegistrationForm, StudentReadOnly
 #INDEX PAGE
 def index(request):
    # return HttpResponse('<html lang="en"py><head><meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- Latest compiled and minified CSS --> <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> </head> <body> <h1>Course Planner</h1> <button>Plan</button> </body>')
@@ -68,9 +68,8 @@ def plan(request):
 @login_required(login_url='login')
 def account(request):
     classes_taken = []
-    studentlst = Users.objects.filter(isFaculty=False)
     permission = False
-    print (studentlst)
+    
     if request.method == 'POST':
         form = AccountForm(request.POST)
         if form.is_valid():
@@ -81,7 +80,20 @@ def account(request):
         permission = usr.isFaculty
         #if user is faculty add a list of students they can assume identity of. 
         form = AccountForm(initial={'first':usrinfo.first_name,'last':usrinfo.last_name,'email':usrinfo.email,'usrname':usrinfo.username,'fclty':usr.isFaculty,'enrled':usr.isEnrolled})
+    studentlst = Users.objects.filter(isFaculty=False)
     return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken, 'studentlst':studentlst,'permission':permission})
 
+@login_required(login_url='login')
+def view_student(request, username):
+    uname = username
+    classes_taken = []
+    stu = User.objects.get(username=uname)
+    stu2 = Users.objects.get(usr_acct = stu)
+    usrinfo = stu
+    #if user is faculty add a list of students they can assume identity of. 
+    form = StudentReadOnly(initial={'first':usrinfo.first_name,'last':usrinfo.last_name,'email':usrinfo.email,'usrname':usrinfo.username,'enrled':stu2.isEnrolled})
+    return render(request,'main/view_student.html',{'form':form, 'classes_taken':classes_taken})
+    
 def about(request):
     pass
+

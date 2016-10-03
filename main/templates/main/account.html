@@ -23,7 +23,8 @@
         <h3>Students</h4>
         {% for stu in studentlst %}
             <div class="row">
-                <input class="btn btn-default" value="{{ stu.usr_acct.username }}">
+                {% url 'view_student' username=stu.usr_acct.username as student_url %}
+                <a href="view_student/{{ stu.usr_acct.username }}"><input class="btn btn-default" value="{{ stu.usr_acct.username }}"></a>
             </div>
         {% endfor %}
         {% endif %}
