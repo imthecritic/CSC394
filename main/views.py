@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
-from form import RegistrationForm
+from main.form import RegistrationForm
 
 #INDEX PAGE
 def index(request):
@@ -24,7 +24,7 @@ def register(request):
 
 
 def coursecatalog(request):
-    pass
+    return render(request, 'main/coursecatalog.html', {})
 
 def plan(request):
     pass

@@ -23,7 +23,7 @@ start a new blank c9 workspace
 type the following on command line:
 
     nano requirements.txt
-	    "django>=1.10,<1.11"
+	    "django>=1.9,<1.10"
 
     sudo apt-get update
     

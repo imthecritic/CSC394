@@ -11,4 +11,7 @@ urlpatterns = [
     url(r'^plan',views.plan, name="plan"),
     url(r'^about',views.about, name="about"),
     url(r'^settings',views.settings, name="settings"),
+    url(r'^coursecatalog',views.coursecatalog, name="coursecatalog"),
+
+    
 ]
