@@ -31,11 +31,12 @@ class DegreeRequirements(models.Model):
     phase       = models.IntegerField()
     
 #extend Django User model
-class Users(User):
+class Users(models.Model):
 #    first       = models.CharField(max_length=128)
 #    last        = models.CharField(max_length=128)
-    degree      = models.ForeignKey(Degrees)
-    creditCnt   = models.IntegerField()
+    usr_acct         = models.OneToOneField(User, on_delete=models.CASCADE)
+    degree      = models.ForeignKey(Degrees, default=None)
+    creditCnt   = models.IntegerField(default=0)
     isEnrolled  = models.BooleanField()
     isFaculty   = models.BooleanField()    
     
