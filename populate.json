@@ -1,0 +1,38 @@
+[
+  {
+    "model": "main.Degrees",
+    "pk": 1,
+    "fields": {
+      "name": "BS CS",
+      "reqcredits": 120,
+      "online":1
+    }
+  },
+  {
+    "model": "main.Degrees",
+    "pk": 2,
+    "fields": {
+      "name": "BS IT",
+      "reqcredits": 120,
+      "online":1
+    }
+  },
+    {
+    "model": "main.Degrees",
+    "pk": 3,
+    "fields": {
+      "name": "MS CS",
+      "reqcredits": 140,
+      "online":1
+    }
+  },
+    {
+    "model": "main.Degrees",
+    "pk": 4,
+    "fields": {
+      "name": "MS IT",
+      "reqcredits": 140,
+      "online":1
+    }
+  }
+]

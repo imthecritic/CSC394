@@ -1,0 +1,34 @@
+h1 {
+    text-align:center;
+}
+
+body{
+    background-color:rgb(253, 232, 255);
+}
+
+
+.home-row{
+    text-align:center;
+}
+
+.menu-box{
+    height:200px;
+    width:200px;
+    background-color:rgb(102, 158, 249);
+    color:white;
+}
+
+.menu-box:hover{
+    background-color:rgb(102, 158, 249);
+    color:white;
+    box-shadow: 5px 5px 2px #888888;
+}
+
+.navbar-default{
+    background-color:rgb(102, 158, 249) !important;
+    
+}
+
+.navbar-default .navbar-nav>li>a{
+    color:white !important;
+}
