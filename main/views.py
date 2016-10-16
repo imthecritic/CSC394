@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from models import Users, Degrees
-from frms import AccountForm, RegistrationForm, StudentReadOnly
+from frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
 #INDEX PAGE
 def index(request):
    # return HttpResponse('<html lang="en"py><head><meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- Latest compiled and minified CSS --> <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> </head> <body> <h1>Course Planner</h1> <button>Plan</button> </body>')
@@ -63,7 +63,8 @@ def browse(request):
     return render(request,'main/browse.html',{})
 
 def plan(request):
-    return render(request,'main/plan.html',{})
+    form = PlanForm()
+    return render(request,'main/plan.html',{'form':form})
 
 @login_required(login_url='login')
 def account(request):
