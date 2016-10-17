@@ -16,10 +16,18 @@
         <div class="container">
             <div class="row home-row">
                 <div class=" col-md-offset-3 col-md-2 home-col">
-                    <a href="{% url 'login' %}"><input class="btn btn-default menu-box" value="Login"></a>   
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}"><input class="btn btn-default menu-box" value="Logout"></a>
+                    {% else %}
+                        <a href="{% url 'login' %}"><input class="btn btn-default menu-box" value="Login"></a>
+                    {% endif %}
                 </div>
                 <div class="col-md-offset-1 col-md-2 home-col">
-                    <a href="{% url 'register' %}"><input class="btn btn-default menu-box" value="Register"></a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'account' %}"><input class="btn btn-default menu-box" value="Account"></a>
+                    {% else %}
+                        <a href="{% url 'register' %}"><input class="btn btn-default menu-box" value="Register"></a>
+                    {% endif %}
                 </div>
             </div>
             <div class="row home-row">

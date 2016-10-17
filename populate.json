@@ -12,8 +12,8 @@
     "model": "main.Degrees",
     "pk": 2,
     "fields": {
-      "name": "BS IT",
-      "reqcredits": 120,
+      "name": "BS IS: Standard",
+      "reqcredits": 192,
       "online":1
     }
   },
@@ -30,8 +30,17 @@
     "model": "main.Degrees",
     "pk": 4,
     "fields": {
-      "name": "MS IT",
-      "reqcredits": 140,
+      "name": "MS IS: Business Analysis/Systems Analysis",
+      "reqcredits": 52,
+      "online":1
+    }
+  },
+    {
+    "model": "main.Degrees",
+    "pk": 5,
+    "fields": {
+      "name": "MS IS: Standard",
+      "reqcredits": 52,
       "online":1
     }
   }
