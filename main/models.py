@@ -16,6 +16,7 @@ class Courses(models.Model):
     summer      = models.BooleanField()
     dormant     = models.BooleanField()
 
+
 #Degree (Degree ID, Degree Name)    
 class Degrees(models.Model):
     id          = models.AutoField(primary_key=True)
@@ -34,7 +35,7 @@ class DegreeRequirements(models.Model):
 class Users(models.Model):
 #    first       = models.CharField(max_length=128)
 #    last        = models.CharField(max_length=128)
-    usr_acct         = models.OneToOneField(User, on_delete=models.CASCADE)
+    usr_acct    = models.OneToOneField(User, on_delete=models.CASCADE)
     degree      = models.ForeignKey(Degrees, default=None)
     creditCnt   = models.IntegerField(default=0)
     isEnrolled  = models.BooleanField()
@@ -44,8 +45,3 @@ class CompletedClasses(models.Model):
     studentID   = models.ForeignKey(Users)
     courseID    = models.ForeignKey(Courses)
 
-
-
-
-
-    

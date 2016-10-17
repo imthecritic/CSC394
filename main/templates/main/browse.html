@@ -1,6 +1,109 @@
 {% extends "./main/base.html" %}
+
+
+
 {% block content %}
     <div class="container">
+    <h2>Master of Science: Computer Science</h2>
+    <br>
+    <b>Overview</b>
+    <br>
+    <br>
+    <p>DePaul's graduate Computer Science program is the premier training ground for computing professionals in the Chicago area. 
+    Unlike a certificate program, our master's courses focus on fundamental concepts that remain constant, 
+    even as technology changes rapidly. Unlike more research focused institutions, however, 
+    our courses emphasize the programmatic application of these fundamental concepts. 
+    Students interested in research will find an abundance of advanced topics --- medical imaging, 
+    data mining, algorithmic analysis, and scientific computing, to name a few.</p>
+    <br>
+    <b>Browse Courses:</b>
+    <br>
+    <br>
+    <div class="container">
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#collapse1">Computer Science Courses</a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse">
+              
+            <ul class="list-group">
+            {% for course in courses %}
 
+              {% if course.cs_class %}
+                <li class="list-group-item">
+                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{course.description}}" 
+                  data-content="Prerequisites: {{course.prereq}}
+                  Typically Offered: {% if course.fall %} Fall {% endif %}
+                  {% if course.winter %} Winter {% endif %} {% if course.spring %} Spring {% endif %} 
+                  {% if course.summer %} Summer {% endif %} ">
+                    {{course.course_id}} : {{ course.name }} 
+                  </a>
+                </li>
+              {% endif %}
+             {% endfor %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
     </div>
+    
+    <h2>Master of Science: Information Systems</h2>
+    <br>
+    <b>Overview</b>
+    <br>
+    <br>
+    <p>The MS in Information Systems fits your career path if it involves running an IT organization or managing information effectively through information systems. 
+    In today's environment, information systems (IS) are planned, operated and maintained not only by IS departments but also by IS-user organizational units. 
+    Because of this reality, career opportunities for IS graduates are found in both traditional IS departments and IS-user business units. 
+    Moreover, a variety of equipment from aircraft to household electronics frequently use embedded systems. 
+    Graduates of IS majors find opportunities in organizations that plan, design and market the functionality of these systems. 
+    Thus, our MS-IS emphasizes the balance between technical skills, modeling proficiency, as well as strategic and organizational knowledge for a wide range of IS usage contexts.</p>
+    <b>Browse Courses:</b>
+    <br>
+    <br>
+    <div class="container">
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#collapse2">Information Systems Courses</a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse">
+              
+            <ul class="list-group">
+            {% for course in courses %}
+
+              {% if course.is_class %}
+                <li class="list-group-item">
+                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{course.description}}" 
+                  data-content="Prerequisites: {{course.prereq}}
+                  Typically Offered: {% if course.fall %} Fall {% endif %}
+                  {% if course.winter %} Winter {% endif %} {% if course.spring %} Spring {% endif %} 
+                  {% if course.summer %} Summer {% endif %} ">
+                    {{course.course_id}} : {{ course.name }} 
+                  </a>
+                </li>
+              {% endif %}
+             {% endfor %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <script>
+    $(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+    });
+    </script>
+    </div>
+    
 {% endblock %}
