@@ -1,0 +1,57 @@
+[
+  {
+    "model": "main.Courses",
+    "pk": 1,
+    "fields": {
+        "course_id": "CSC400",
+        "name" : "Discrete Structures for Computer Science",
+        "description" :"Covers the basic mathematical tools essential for solving problems in computer science.", 
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1, 
+        "spring" : 1, 
+        "summer": 1,
+        "dormant": 0, 
+        "cs_class": 1, 
+        "is_class": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 2,
+    "fields": {
+        "course_id": "CSC401",
+        "name" : "Introduction to Programming",
+        "description" :"An introduction to programming with a focus on problem solving, structured programming, and algorithm design.", 
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1, 
+        "spring" : 1, 
+        "summer": 1,
+        "dormant": 1, 
+        "cs_class": 1,
+        "is_class": 0
+        }
+    },
+  {
+    "model": "main.Courses",
+    "pk": 3,
+    "fields": {
+        "course_id": "IS 421",
+        "name" : "Systems Analysis",
+        "description" :"Course focus is on both traditional and object oriented systems analysis, with an emphasis upon developing.", 
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1, 
+        "spring" : 1, 
+        "summer": 1,
+        "dormant": 1, 
+        "cs_class": 0,
+        "is_class": 1
+        }
+    }
+    
+]
