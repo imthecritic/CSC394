@@ -65,7 +65,9 @@ def coursecatalog(request):
     return render(request, 'main/coursecatalog.html', {})
 
 def browse(request):
-    courses = Courses.objects.all()
+    #courses = Courses.objects.all()
+    degrees = Degrees.objects.all()
+    
     return render(request,'main/browse.html',{'courses':courses})
 
 def plan(request):

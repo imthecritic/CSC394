@@ -21,7 +21,7 @@
     "model": "main.Degrees",
     "pk": 3,
     "fields": {
-      "name": "MS CS",
+      "name": "MS CS: Software and Systems Development",
       "reqcredits": 140,
       "online":1
     }
@@ -35,7 +35,7 @@
       "online":1
     }
   },
-    {
+  {
     "model": "main.Degrees",
     "pk": 5,
     "fields": {
@@ -43,5 +43,5 @@
       "reqcredits": 52,
       "online":1
     }
-  }
+  },
 ]
