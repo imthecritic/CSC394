@@ -1,21 +1,18 @@
 
-from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
-<<<<<<< HEAD
 from main.form import RegistrationForm
+from django.shortcuts import get_object_or_404, render
 
-=======
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from models import Users, Degrees
-from frms import AccountForm, RegistrationForm, StudentReadOnly
->>>>>>> 3d32e8740230ff2b869898e09b1157b6aac5617f
+from main.models import Users, Degrees, Courses
+from main.frms import AccountForm, RegistrationForm, StudentReadOnly
 #INDEX PAGE
 def index(request):
-   # return HttpResponse('<html lang="en"py><head><meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- Latest compiled and minified CSS --> <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> </head> <body> <h1>Course Planner</h1> <button>Plan</button> </body>')
-    
+
     return render(request, 'main/index.html', {})
     
 def loginPage(request):
@@ -64,13 +61,12 @@ def register(request):
     return render(request,'main/register.html',{'form': form})
 
 
-<<<<<<< HEAD
 def coursecatalog(request):
     return render(request, 'main/coursecatalog.html', {})
-=======
+
 def browse(request):
-    return render(request,'main/browse.html',{})
->>>>>>> 3d32e8740230ff2b869898e09b1157b6aac5617f
+    courses = Courses.objects.all()
+    return render(request,'main/browse.html',{'courses':courses})
 
 def plan(request):
     return render(request,'main/plan.html',{})
