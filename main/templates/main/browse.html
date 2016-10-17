@@ -32,7 +32,7 @@
             <ul class="list-group">
             {% for course in courses %}
 
-              {% if course.is_class %}
+              {% if course.cs_class %}
                 <li class="list-group-item">
                   <a href="#" onclick= "return false;" data-toggle="popover" title="{{course.description}}" 
                   data-content="Prerequisites: {{course.prereq}}
