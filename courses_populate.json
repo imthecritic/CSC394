@@ -12,9 +12,7 @@
         "winter": 1, 
         "spring" : 1, 
         "summer": 1,
-        "dormant": 0, 
-        "cs_class": 1, 
-        "is_class": 0
+        "dormant": 0 
         }
   },
   {
@@ -30,9 +28,7 @@
         "winter": 1, 
         "spring" : 1, 
         "summer": 1,
-        "dormant": 1, 
-        "cs_class": 1,
-        "is_class": 0
+        "dormant": 1 
         }
     },
   {
@@ -48,9 +44,7 @@
         "winter": 1, 
         "spring" : 1, 
         "summer": 1,
-        "dormant": 1, 
-        "cs_class": 0,
-        "is_class": 1
+        "dormant": 1
         }
     }
     

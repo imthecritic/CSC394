@@ -1,4 +1,3 @@
-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from main.form import RegistrationForm
@@ -10,6 +9,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from main.models import Users, Degrees, Courses, DegreeRequirements
 from main.frms import AccountForm, RegistrationForm, StudentReadOnly
+from models import Users, Degrees, Courses
+from frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
+
 #INDEX PAGE
 def index(request):
 
@@ -70,7 +72,8 @@ def browse(request):
     return render(request,'main/browse.html',{'courses':courses, 'degrees':degrees})
 
 def plan(request):
-    return render(request,'main/plan.html',{})
+    form = PlanForm()
+    return render(request,'main/plan.html',{'form':form})
 
 @login_required(login_url='login')
 def account(request):

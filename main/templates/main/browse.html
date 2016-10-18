@@ -30,19 +30,21 @@
           <div id="collapse1" class="panel-collapse collapse">
               
             <ul class="list-group">
-            {% for course in courses %}
-
-              {% if course.cs_class %}
+          {% for degree in degrees %}
+          {% if degree.degree_id.name == "BS CS" %}
                 <li class="list-group-item">
-                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{course.description}}" 
-                  data-content="Prerequisites: {{course.prereq}}
-                  Typically Offered: {% if course.fall %} Fall {% endif %}
-                  {% if course.winter %} Winter {% endif %} {% if course.spring %} Spring {% endif %} 
-                  {% if course.summer %} Summer {% endif %} ">
-                    {{course.course_id}} : {{ course.name }} 
+                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{degree.course_id.description}}" 
+                  data-content="Prerequisites: {{degree.course_id.prereq}}
+                  Typically Offered: {% if degree.course_id.fall %} Fall {% endif %}
+                  {% if degree.course_id.winter %} Winter {% endif %} {% if degree.course_id.spring %} Spring {% endif %} 
+                  {% if degree.course_id.summer %} Summer {% endif %} ">
+                    {{degree.course_id.course_id}} : {{ degree.course_id.name }} 
                   </a>
+                    {% if degree.required %}
+                     <b style="color:red"> Required </b>
+                    {% endif %}
                 </li>
-              {% endif %}
+            {% endif %}
              {% endfor %}
             </ul>
 
@@ -76,19 +78,18 @@
           <div id="collapse2" class="panel-collapse collapse">
               
             <ul class="list-group">
-            {% for course in courses %}
-
-              {% if course.is_class %}
+          {% for degree in degrees %}
+          {% if degree.degree_id.name == "BS IT" %}
                 <li class="list-group-item">
-                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{course.description}}" 
-                  data-content="Prerequisites: {{course.prereq}}
-                  Typically Offered: {% if course.fall %} Fall {% endif %}
-                  {% if course.winter %} Winter {% endif %} {% if course.spring %} Spring {% endif %} 
-                  {% if course.summer %} Summer {% endif %} ">
-                    {{course.course_id}} : {{ course.name }} 
+                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{degree.course_id.description}}" 
+                  data-content="Prerequisites: {{degree.course_id.prereq}}
+                  Typically Offered: {% if degree.course_id.fall %} Fall {% endif %}
+                  {% if degree.course_id.winter %} Winter {% endif %} {% if degree.course_id.spring %} Spring {% endif %} 
+                  {% if degree.course_id.summer %} Summer {% endif %} ">
+                    {{degree.course_id.course_id}} : {{ degree.course_id.name }} 
                   </a>
                 </li>
-              {% endif %}
+            {% endif %}
              {% endfor %}
             </ul>
 

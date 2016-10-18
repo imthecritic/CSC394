@@ -1,7 +1,43 @@
-{% extends "./main/base.html" %}
-{% block content %}
-    {% if user.is_authenticated %}
-        <p> YOU ARE LOGGED IN</p>
-    {% endif %}
-    
-{% endblock %}
+<html lang="en">
+    <head>
+      {% load static %}
+        <meta charset="utf-8" />
+        <title>Planner</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static "main/CSS/main.css" %}"
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+    <div id="content">
+        <div class="container">
+            <div class="row home-row">
+                <div class=" col-md-offset-3 col-md-2 home-col">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}"><input class="btn btn-default menu-box" value="Logout"></a>
+                    {% else %}
+                        <a href="{% url 'login' %}"><input class="btn btn-default menu-box" value="Login"></a>
+                    {% endif %}
+                </div>
+                <div class="col-md-offset-1 col-md-2 home-col">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'account' %}"><input class="btn btn-default menu-box" value="Account"></a>
+                    {% else %}
+                        <a href="{% url 'register' %}"><input class="btn btn-default menu-box" value="Register"></a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row home-row">
+                <div class=" col-md-offset-3 col-md-2 home-col">
+                    <a href="{% url 'browse' %}"><input class="btn btn-default menu-box" value="Browse"></a>   
+                </div>
+                <div class="col-md-offset-1 col-md-2 home-col">
+                    <a href="{% url 'plan' %}"><input class="btn btn-default menu-box" value="Plan"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
