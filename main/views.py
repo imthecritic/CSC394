@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from main.models import Users, Degrees, Courses
+from main.models import Users, Degrees, Courses, DegreeRequirements
 from main.frms import AccountForm, RegistrationForm, StudentReadOnly
 #INDEX PAGE
 def index(request):
@@ -66,7 +66,8 @@ def coursecatalog(request):
 
 def browse(request):
     courses = Courses.objects.all()
-    return render(request,'main/browse.html',{'courses':courses})
+    degrees = DegreeRequirements.objects.all().order_by('degree_id')
+    return render(request,'main/browse.html',{'courses':courses, 'degrees':degrees})
 
 def plan(request):
     return render(request,'main/plan.html',{})

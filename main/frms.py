@@ -1,5 +1,5 @@
 from django import forms
-from models import Users, Degrees
+from main.models import Users, Degrees
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 class AccountForm(forms.Form):

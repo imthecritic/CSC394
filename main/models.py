@@ -15,8 +15,6 @@ class Courses(models.Model):
     spring      = models.BooleanField()
     summer      = models.BooleanField()
     dormant     = models.BooleanField()
-    cs_class    = models.BooleanField()
-    is_class    = models.BooleanField()
 
 #Degree (Degree ID, Degree Name)    
 class Degrees(models.Model):
@@ -29,7 +27,7 @@ class Degrees(models.Model):
 class DegreeRequirements(models.Model):
     degree_id   = models.ForeignKey(Degrees)
     course_id   = models.ForeignKey(Courses)
-    #required    = models.BooleanField()
+    required    = models.BooleanField()
     phase       = models.IntegerField()
     
 #extend Django User model
