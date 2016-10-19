@@ -6,17 +6,21 @@
              {% csrf_token %}
              {{ form.as_p }}
         <div class="row">
-            <input class="btn btn-primary" type="submit" value="Update Account" />           
+            <input class="btn btn-primary submitbtn" type="submit" value="Update Account" />           
         </div>
         </form>
         <form method="post" action="addClass">
+        
+        <h3>My Plans</h3>
+            <p>show plans here</p>
+            
         <h3>Classes Taken</h3>
             {% for class in classes_taken %}
                 <div class="row">
-                    <p>{{ class.courseID.name }}</p>
+                    <p class="class_taken">{{ class.courseID.course_id }} : {{ class.courseID.name }}</p>
                 </div>
             {% endfor %}
-        <input name="addclass"/><input class="btn btn-primary" type="submit" value="Add Class"/>
+        <input name="addclass"/><input class="btn btn-primary submitbtn" type="submit" value="Add Class"/>
         </form>
         {% if permission %}
         <h3>Students</h4>

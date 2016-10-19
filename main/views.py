@@ -105,8 +105,8 @@ def plan(request):
         print mjr
         print reqs
         print courses
-        plnr    = Planner(start, mjr, rate)
-        myplan  = plnr.plan(courses, start, rate, credits)
+        plnr    = Planner(start, mjr, rate, reqs)
+        myplan  = plnr.plan(courses, taken, start, rate, credits)
         
         form = PlanForm()
         return render(request,'main/plan.html',{'form':form})
@@ -129,6 +129,7 @@ def account(request):
     studentlst = Users.objects.filter(isFaculty=False)
     return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken, 'studentlst':studentlst,'permission':permission})
 
+@login_required(login_url='login')
 def addClass(request):
     classid =  request.POST['addclass']
     crse    =  Courses.objects.get(course_id = classid)
