@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^plan',views.plan, name="plan"),
     url(r'^about',views.about, name="about"),
     url(r'^account',views.account, name="account"),
+    url(r'^addClass',views.addClass, name="addClass"),
     url(r'^view_student/(?P<username>\w+)',views.view_student,name='student view'),
 ]

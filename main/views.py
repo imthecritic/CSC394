@@ -113,7 +113,7 @@ def plan(request):
 
 @login_required(login_url='login')
 def account(request):
-    classes_taken = []
+    classes_taken = CompletedClasses.objects.filter(studentID = request.user.id)
     permission = False
     
     if request.method == 'POST':
@@ -129,6 +129,14 @@ def account(request):
     studentlst = Users.objects.filter(isFaculty=False)
     return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken, 'studentlst':studentlst,'permission':permission})
 
+def addClass(request):
+    classid =  request.POST['addclass']
+    crse    =  Courses.objects.get(course_id = classid)
+    usr     = Users.objects.get(usr_acct=request.user.id)
+    taken   =  CompletedClasses(studentID = usr, courseID = crse)
+    taken.save()
+    return HttpResponseRedirect('account')
+    
 @login_required(login_url='login')
 def view_student(request, username):
     uname = username
