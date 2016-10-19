@@ -8,9 +8,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from main.models import Users, Degrees, Courses, DegreeRequirements
-from main.frms import AccountForm, RegistrationForm, StudentReadOnly
-from models import Users, Degrees, Courses
-from frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
+from main.frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
+
 
 #INDEX PAGE
 def index(request):
