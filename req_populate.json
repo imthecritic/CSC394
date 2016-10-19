@@ -18,5 +18,15 @@
       "required" : 1,
       "phase" : 1
     }
+  },
+  {
+    "model": "main.DegreeRequirements",
+    "pk": 3,
+    "fields": {
+      "degree_id" : 2,
+      "course_id" : 2,
+      "required" : 1,
+      "phase" : 1
+    }
   }
 ]

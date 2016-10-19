@@ -4,6 +4,10 @@
 
 {% block content %}
     <div class="container">
+    {% for req in degrees %}
+      <p>{{ req.course_id.name }}</p>
+    {% endfor %}
+      
     <h2>Master of Science: Computer Science</h2>
     <br>
     <b>Overview</b>

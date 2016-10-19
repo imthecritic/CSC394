@@ -8,8 +8,9 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from models import Users, Degrees, Courses
+from models import Users, Degrees, Courses, DegreeRequirements, CompletedClasses
 from frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
+from planner import Planner
 #INDEX PAGE
 def index(request):
 
@@ -65,14 +66,50 @@ def coursecatalog(request):
     return render(request, 'main/coursecatalog.html', {})
 
 def browse(request):
-    #courses = Courses.objects.all()
-    degrees = Degrees.objects.all()
+    courses = Courses.objects.all()
+    degrees = DegreeRequirements.objects.all().order_by('degree_id')
     
-    return render(request,'main/browse.html',{'courses':courses})
+    browse  = []
+    current = []
+    names   = []
+    i = degrees[0].degree_id.id
+    names.append(degrees[0].degree_id.name)
+    for deg in degrees:
+        if deg.degree_id.id != i:
+            browse.append(current)
+            names.append(deg.degree_id.name)
+            current = []
+        current.append(deg)
+        
+    print browse
+    print names
+    return render(request,'main/browse.html',{'courses':courses,'degrees':degrees})
 
 def plan(request):
-    form = PlanForm()
-    return render(request,'main/plan.html',{'form':form})
+    if request.method == 'POST':
+        mjr     = request.POST['mjr']
+        start   = request.POST['start']
+        rate    = request.POST['rate']
+        
+        taken   = []
+        credits = 0
+        reqs    = DegreeRequirements.objects.filter(degree_id__id = mjr)
+        reqs    = [req.course_id for req in reqs]
+        courses = Courses.objects.all()
+        
+        if request.user.is_authenticated():
+            taken   = CompletedClasses.objects.filter(studentID = request.user.id)
+            usr     = Users.objects.get(usr_acct=request.user.id)
+            credits = usr.credits
+        
+        print mjr
+        print reqs
+        print courses
+        plnr    = Planner(start, mjr, rate)
+        myplan  = plnr.plan(courses, start, rate, credits)
+        
+        form = PlanForm()
+        return render(request,'main/plan.html',{'form':form})
 
 @login_required(login_url='login')
 def account(request):

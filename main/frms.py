@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class PlanForm(forms.Form):
-    mjr     = forms.ChoiceField(label="Major", choices=[(1,'BS CS'),(2,'BS IT'),(3,'MS CS'),(4,'MS IT')],required=True)
+    mjr     = forms.ChoiceField(label="Major", choices=[(1,'BS CS'),(2,'BS IT'),(3,'MS CS: Software and Systems Development'),(4,'MS IT')],required=True)
     start   = forms.ChoiceField(label="Start", choices=[(1,'Fall'),(2,'Winter'),(3,'Spring'),(4,'Summer')],required=True)
     rate    = forms.ChoiceField(label="Start", choices=[(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),(6,'6')],required=True)
 

@@ -6,28 +6,33 @@
 #successor method that finds all possible classes you can take 
 class Planner:
     
+    def __init__(self, st, mjr, rt):
+        self.start  = st
+        self.major  = mjr
+        self.rt     = rt
+        
     quarters = ["Fall","Winter","Spring"]
     #test comment
     #takes list of possible courses, start date, end date, class taking rate, number of credits needed 
-    def plan(self, courses, start, end, rate,credits):
+    def plan(self, courses, start, rate,credits):
         courses_taken = []
         schedule      = []
         visited       = []
         term = start
-        options = getSuccessors(courses, courses_taken, rate, term,0)
+        options = self.getSuccessors(courses, courses_taken, rate, term,0)
         cls_cntr = 0
         #search loop  - while options have not been exhausted
         while(len(options != 0)):
             current = options.pop(0)
             cls_cntr += 1
-            if isGoal(current):
+            if self.isGoal(current, credits):
                 return current
             else:
                 if cls_cntr == rate:#number of classes for term has been acheived
                     cls_cntr = 0
                     term = (term + 1) % 3 #set new term
                 
-                options = getSuccessors(courses,current[0], rate,term,current[1])
+                options = self.getSuccessors(courses,current[0], rate,term,current[1])
                 
         return [] # loop has failed         
                     
@@ -42,10 +47,11 @@ class Planner:
     
     def getSuccessors(self, courses,courses_taken, rate, term,current_total):
         for course in courses:
-            if validPrereq(course,courses, courses_taken) and  offered(course,term): #course is valid insert to options
+            if self.validPrereq(course,courses, courses_taken) and  self.offered(course,term): #course is valid insert to options
                 #check if 
-                estimate = getEstimate(course, courses_taken, courses)
-                options = insertOption(options, courses_taken, course,current_total + estimate)
+                estimate    = self.getEstimate(course, courses_taken, courses)
+                options     = [] 
+                #options = self.insertOption(options, courses_taken, course,current_total + estimate)
                 
         return options
                 
@@ -88,5 +94,5 @@ class schedule_state:
     #course list
     #current term
     #current estimate
-    def ex1():
+    def ex1(self):
         pass
