@@ -100,16 +100,14 @@ def plan(request):
         if request.user.is_authenticated():
             taken   = CompletedClasses.objects.filter(studentID = request.user.id)
             usr     = Users.objects.get(usr_acct=request.user.id)
-            credits = usr.credits
+            credits = usr.creditCnt
         
-        print mjr
-        print reqs
-        print courses
+
         plnr    = Planner(start, mjr, rate, reqs)
         myplan  = plnr.plan(courses, taken, start, rate, credits)
         
-        form = PlanForm()
-        return render(request,'main/plan.html',{'form':form})
+    form = PlanForm()
+    return render(request,'main/plan.html',{'form':form})
 
 @login_required(login_url='login')
 def account(request):
