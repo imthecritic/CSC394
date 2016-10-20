@@ -5,7 +5,7 @@
     "fields": {
       "name": "BS CS",
       "reqcredits": 120,
-      "online":1
+      "online": 1
     }
   },
   {
@@ -14,16 +14,16 @@
     "fields": {
       "name": "BS IS: Standard",
       "reqcredits": 192,
-      "online":1
+      "online": 1
     }
   },
-    {
+  {
     "model": "main.Degrees",
     "pk": 3,
     "fields": {
       "name": "MS CS: Software and Systems Development",
       "reqcredits": 140,
-      "online":1
+      "online": 1
     }
   },
     {
@@ -32,7 +32,7 @@
     "fields": {
       "name": "MS IS: Business Analysis/Systems Analysis",
       "reqcredits": 52,
-      "online":1
+      "online": 1
     }
   },
   {
@@ -41,7 +41,7 @@
     "fields": {
       "name": "MS IS: Standard",
       "reqcredits": 52,
-      "online":1
+      "online": 1
     }
-  },
+  }
 ]
