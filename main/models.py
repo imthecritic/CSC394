@@ -16,7 +16,6 @@ class Courses(models.Model):
     summer      = models.BooleanField()
     dormant     = models.BooleanField()
 
-
 #Degree (Degree ID, Degree Name)    
 class Degrees(models.Model):
     id          = models.AutoField(primary_key=True)
