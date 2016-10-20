@@ -19,6 +19,14 @@
     our courses emphasize the programmatic application of these fundamental concepts. 
     Students interested in research will find an abundance of advanced topics --- medical imaging, 
     data mining, algorithmic analysis, and scientific computing, to name a few.</p>
+    <b><p>Degree Requirements:</p></b>
+    <ul>
+      <li>Complete a minimum of 52 graduate credit hours in addition to any required introductory courses of the designated degree program.</li>
+      <li>Complete all graduate courses and requirements listed in the designated degree program.</li>
+      <li>Earn a grade of C- or better in all courses of the designated degree program.</li>
+      <li>Maintain a cumulative GPA of 2.5 or higher.</li>
+    </ul>
+
     <br>
     <b>Browse Courses:</b>
     <br>
@@ -34,19 +42,22 @@
           <div id="collapse1" class="panel-collapse collapse">
               
             <ul class="list-group">
-            {% for course in courses %}
-
-              {% if course.cs_class %}
+          {% for degree in degrees %}
+          {% if degree.degree_id.name == "MS CS" %}
                 <li class="list-group-item">
-                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{course.description}}" 
-                  data-content="Prerequisites: {{course.prereq}}
-                  Typically Offered: {% if course.fall %} Fall {% endif %}
-                  {% if course.winter %} Winter {% endif %} {% if course.spring %} Spring {% endif %} 
-                  {% if course.summer %} Summer {% endif %} ">
-                    {{course.course_id}} : {{ course.name }} 
+                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{degree.course_id.description}}" 
+                  data-content="Prerequisite(s): {{degree.course_id.prereq}}
+                  Typically Offered: {% if degree.course_id.fall %} Fall {% endif %}
+                  {% if degree.course_id.winter %} Winter {% endif %} {% if degree.course_id.spring %} Spring {% endif %} 
+                  {% if degree.course_id.summer %} Summer {% endif %} ">
+                    {{degree.course_id.course_id}} : {{ degree.course_id.name }} 
                   </a>
+                     <b>({{degree.course_id.credits}} credits)</b>
+                    {% if degree.required %}
+                     <b style="color:red"> Required </b>
+                    {% endif %}
                 </li>
-              {% endif %}
+            {% endif %}
              {% endfor %}
             </ul>
 
@@ -66,6 +77,13 @@
     Moreover, a variety of equipment from aircraft to household electronics frequently use embedded systems. 
     Graduates of IS majors find opportunities in organizations that plan, design and market the functionality of these systems. 
     Thus, our MS-IS emphasizes the balance between technical skills, modeling proficiency, as well as strategic and organizational knowledge for a wide range of IS usage contexts.</p>
+    <b><p>Degree Requirements:</p></b>
+    <ul>
+      <li>Complete a minimum of 52 graduate credit hours in addition to any required introductory courses of the designated degree program.</li>
+      <li>Complete all graduate courses and requirements listed in the designated degree program.</li>
+      <li>Earn a grade of C- or better in all courses of the designated degree program.</li>
+      <li>Maintain a cumulative GPA of 2.5 or higher.</li>
+    </ul>
     <b>Browse Courses:</b>
     <br>
     <br>
@@ -74,33 +92,66 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" href="#collapse2">Information Systems Courses</a>
+              <a data-toggle="collapse" href="#collapse2">Standard Concentration Courses</a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse">
+            <ul class="list-group">
+          {% for degree in degrees %}
+          {% if degree.degree_id.name == "MS IS: Standard" %}
+                <li class="list-group-item">
+                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{degree.course_id.description}}" 
+                  data-content="Prerequisite(s): {{degree.course_id.prereq}}
+                  Typically Offered: {% if degree.course_id.fall %} Fall {% endif %}
+                  {% if degree.course_id.winter %} Winter {% endif %} {% if degree.course_id.spring %} Spring {% endif %} 
+                  {% if degree.course_id.summer %} Summer {% endif %} ">
+                    {{degree.course_id.course_id}} : {{ degree.course_id.name }} 
+                  </a>
+                     <b>({{degree.course_id.credits}} credits)</b>
+                    {% if degree.required %}
+                     <b style="color:red"> Required </b>
+                    {% endif %}
+                </li>
+            {% endif %}
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#collapse3">Business Analysis/Systems Analysis Concentration Courses</a>
             </h4>
           </div>
           <div id="collapse2" class="panel-collapse collapse">
               
             <ul class="list-group">
-            {% for course in courses %}
-
-              {% if course.is_class %}
+          {% for degree in degrees %}
+          {% if degree.degree_id.name == "MS IS: Business Analysis/Systems Analysis" %}
                 <li class="list-group-item">
-                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{course.description}}" 
-                  data-content="Prerequisites: {{course.prereq}}
-                  Typically Offered: {% if course.fall %} Fall {% endif %}
-                  {% if course.winter %} Winter {% endif %} {% if course.spring %} Spring {% endif %} 
-                  {% if course.summer %} Summer {% endif %} ">
-                    {{course.course_id}} : {{ course.name }} 
+                  <a href="#" onclick= "return false;" data-toggle="popover" title="{{degree.course_id.description}}" 
+                  data-content="Prerequisite(s): {{degree.course_id.prereq}}
+                  Typically Offered: {% if degree.course_id.fall %} Fall {% endif %}
+                  {% if degree.course_id.winter %} Winter {% endif %} {% if degree.course_id.spring %} Spring {% endif %} 
+                  {% if degree.course_id.summer %} Summer {% endif %} ">
+                    {{degree.course_id.course_id}} : {{ degree.course_id.name }} 
                   </a>
+                     <b>({{degree.course_id.credits}} credits)</b>
+                    {% if degree.required %}
+                     <b style="color:red"> Required </b>
+                    {% endif %}
                 </li>
-              {% endif %}
-             {% endfor %}
+            {% endif %}
+            {% endfor %}
             </ul>
-
           </div>
         </div>
       </div>
     </div>
-    <br>
     <br>
     <br>
     <script>

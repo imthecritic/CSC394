@@ -1,4 +1,3 @@
-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from main.form import RegistrationForm
@@ -8,9 +7,16 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 from models import Users, Degrees, Courses, DegreeRequirements, CompletedClasses
 from frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
 from planner import Planner
+=======
+from main.models import Users, Degrees, Courses, DegreeRequirements
+from main.frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
+
+
+>>>>>>> ee9009173edf1c9654e343be5b601fc939c0de46
 #INDEX PAGE
 def index(request):
 
@@ -68,6 +74,7 @@ def coursecatalog(request):
 def browse(request):
     courses = Courses.objects.all()
     degrees = DegreeRequirements.objects.all().order_by('degree_id')
+<<<<<<< HEAD
     
     browse  = []
     current = []
@@ -84,6 +91,9 @@ def browse(request):
     print browse
     print names
     return render(request,'main/browse.html',{'courses':courses,'degrees':degrees})
+=======
+    return render(request,'main/browse.html',{'courses':courses, 'degrees':degrees})
+>>>>>>> ee9009173edf1c9654e343be5b601fc939c0de46
 
 def plan(request):
     if request.method == 'POST':
