@@ -5,14 +5,14 @@
     "fields": {
         "course_id": "CSC400",
         "name" : "Discrete Structures for Computer Science",
-        "description" :"Covers the basic mathematical tools essential for solving problems in computer science.", 
+        "description" :"Covers the basic mathematical tools essential for solving problems in computer science.",
         "prereq" : "none",
         "credits": 4,
         "fall" : 1,
-        "winter": 1, 
-        "spring" : 1, 
+        "winter": 1,
+        "spring" : 1,
         "summer": 1,
-        "dormant": 0 
+        "dormant": 0
         }
   },
   {
@@ -21,31 +21,878 @@
     "fields": {
         "course_id": "CSC401",
         "name" : "Introduction to Programming",
-        "description" :"An introduction to programming with a focus on problem solving, structured programming, and algorithm design.", 
+        "description" :"An introduction to programming with a focus on problem solving, structured programming, and algorithm design.",
         "prereq" : "none",
         "credits": 4,
         "fall" : 1,
-        "winter": 1, 
-        "spring" : 1, 
+        "winter": 1,
+        "spring" : 1,
         "summer": 1,
-        "dormant": 1 
+        "dormant": 0
         }
-    },
+  },
   {
     "model": "main.Courses",
     "pk": 3,
     "fields": {
-        "course_id": "IS 421",
+        "course_id": "CSC402",
+        "name" : "Data Structuers 1",
+        "description" :"A first course on data structures in Java for graduate students. The course introduces Java programming.",
+        "prereq" : "CSC401",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 4,
+    "fields": {
+        "course_id": "CSC403",
+        "name" : "Data Structuers 2",
+        "description" :"This is the second course on data structures in Java for graduate students.",
+        "prereq" : "CSC402",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 5,
+    "fields": {
+        "course_id": "CSC406",
+        "name" : "Systems 1",
+        "description" :"An introductory graduate course on computer systems topics.",
+        "prereq" : "CSC401",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 6,
+    "fields": {
+        "course_id": "CSC407",
+        "name" : "Systems 2",
+        "description" :"Second course on computer systems topics.",
+        "prereq" : "CSC402 and CSC406",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 7,
+    "fields": {
+        "course_id": "CSC421",
+        "name" : "Applied Algorithms and Structures",
+        "description" :"This course covers techniques for designing and analyzing algorithms and structures.",
+        "prereq" : "CSC400 and CSC403",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 8,
+    "fields": {
+        "course_id": "CSC435",
+        "name" : "Distributed Systems I",
+        "description" :"An introduction to distributed systems.",
+        "prereq" : "CSC403 and CSC407",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 9,
+    "fields": {
+        "course_id": "CSC447",
+        "name" : "Concepts of Programming Languages",
+        "description" :"Programming paradigms and language concepts: functional programming.",
+        "prereq" : "CSC403 and CSC406",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 10,
+    "fields": {
+        "course_id": "CSC453",
+        "name" : "Database Technologies",
+        "description" :"A core graduate course in database design and implementation.",
+        "prereq" : "CSC403",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 11,
+    "fields": {
+        "course_id": "SE450",
+        "name" : " Object-Oriented Software Development",
+        "description" :"Principle, techniques and tools of object-oriented modeling, design, implementation, and testing.",
+        "prereq" : "CSC403",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 12,
+    "fields": {
+        "course_id": "SE430",
+        "name" : " Object Oriented Modeling",
+        "description" :"Object-oriented modeling techniques for analysis and design.",
+        "prereq" : "CSC403",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 13,
+    "fields": {
+        "course_id": "SE452",
+        "name" : " Object-Oriented Enterprise Computing",
+        "description" :"Applying object-oriented techniques in the design, development, and integration of server-side enterprise applications.",
+        "prereq" : "CSC403",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 14,
+    "fields": {
+        "course_id": "SE453",
+        "name" : "Architecture and Frameworks for Developing Client Applications",
+        "description" :"Focus on software for developing web-based thin client applications.",
+        "prereq" : "SE452",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 15,
+    "fields": {
+        "course_id": "SE457",
+        "name" : "Service-Oriented Architecture",
+        "description" :"Study of service oriented architecture (SOA) from the business, architectural, and technology perspectives.",
+        "prereq" : "SE450",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 16,
+    "fields": {
+        "course_id": "SE533",
+        "name" : "Software Validation and Verification",
+        "description" :"Techniques, methods and tools for software inspection and testing.",
+        "prereq" : "SE430",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 17,
+    "fields": {
+        "course_id": "SE491",
+        "name" : "Software Engineering Studio",
+        "description" :"Students will work in small teams to develop realistic software systems in a master-apprentice environment.",
+        "prereq" : "SE450",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 18,
+    "fields": {
+        "course_id": "SE591",
+        "name" : "Software Engineering Studio II",
+        "description" :"This is the continuation of SE 491.",
+        "prereq" : "SE491",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 19,
+    "fields": {
+        "course_id": "CSC461",
+        "name" : "Optimized C++",
+        "description" :"Focus on developing software to efficiently use the fixed CPU power and resources. ",
+        "prereq" : "CSC400 and CSC403 and CSC406",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 20,
+    "fields": {
+        "course_id": "GAM450",
+        "name" : "Physics for Game Developers",
+        "description" :"The course concentrates on Newton's Laws of Motion, kinematics and kinetics.",
+        "prereq" : "CSC461 and SE450",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 21,
+    "fields": {
+        "course_id": "GAM475",
+        "name" : "Game Engine Programming I",
+        "description" :"This course designs and implements a custom real-time game engine.",
+        "prereq" : "SE450 and GPH469",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 22,
+    "fields": {
+        "course_id": "GAM690",
+        "name" : "Game Development Studio I",
+        "description" :"Students will work in small teams to design and implement a computer game. ",
+        "prereq" : "GAM475",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 23,
+    "fields": {
+        "course_id": "GAM691",
+        "name" : "Game Development Studio II",
+        "description" :"Continuation of GAM 690",
+        "prereq" : "GAM475",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 24,
+    "fields": {
+        "course_id": "GPH469",
+        "name" : "Computer Graphics Development",
+        "description" :"Basic graphics architecture. Coordinate systems. Three-dimensional representations and transformations.",
+        "prereq" : "CSC461",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 25,
+    "fields": {
+        "course_id": "GPH580",
+        "name" : "Hardware Shading Techniques",
+        "description" :"This class explores the current trends in programmable computer graphics hardware.",
+        "prereq" : "GPH469",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+    {
+    "model": "main.Courses",
+    "pk": 26,
+    "fields": {
+        "course_id": "IS421",
         "name" : "Systems Analysis",
-        "description" :"Course focus is on both traditional and object oriented systems analysis, with an emphasis upon developing.", 
+        "description" :"Course focus is on both traditional and object oriented systems analysis, with an emphasis upon developing competency in a wide range of modeling techniques. ",
         "prereq" : "none",
         "credits": 4,
         "fall" : 1,
-        "winter": 1, 
-        "spring" : 1, 
+        "winter": 1,
+        "spring" : 1,
         "summer": 1,
-        "dormant": 1
+        "dormant": 0
         }
-    }
-    
+  },
+  {
+    "model": "main.Courses",
+    "pk": 27,
+    "fields": {
+        "course_id": "CSC451",
+        "name" : "Database Design",
+        "description" :"Requirement analysis, conceptual design, logical design and implementation of relational databases. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 28,
+    "fields": {
+        "course_id": "IS422",
+        "name" : "System Design, Implementation and Maintenance",
+        "description" :"Course focus is on both traditional and object oriented systems design. ",
+        "prereq" : "IS421 and CSC451",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 29,
+    "fields": {
+        "course_id": "IS430",
+        "name" : "Fundamentals of IT Project Management",
+        "description" :"This course concentrates on monitoring, managing and controlling assets and resources on a single IT project. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 30,
+    "fields": {
+        "course_id": "CNS440",
+        "name" : "Information Security Management",
+        "description" :"Survey of information security management as it applies to information systems analysis, design, and operations. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 31,
+    "fields": {
+        "course_id": "IS435",
+        "name" : "Organizational Modeling",
+        "description" :"The course explores contemporary approaches to analyzing and modeling organizational problems, processes, workflow, users and data. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 32,
+    "fields": {
+        "course_id": "IS485",
+        "name" : "Requirements Elicitation, Analysis and Specification",
+        "description" :"Course focus is on both traditional and object oriented systems analysis, with an emphasis upon developing competency in a wide range of modeling techniques. ",
+        "prereq" : "IS422 or IS430 or PM430",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 33,
+    "fields": {
+        "course_id": "IS535",
+        "name" : "Information Technology Investment Financial Analysis",
+        "description" :"This course focuses on the application of financial analysis and decision-making approaches to aid information technology investment decisions at the operational, project, tactical and strategic levels. ",
+        "prereq" : "SE477 or IS565 or ACCT500 or IS430 or PM430 or ECT455",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 34,
+    "fields": {
+        "course_id": "IS560",
+        "name" : "Enterprise Systems",
+        "description" :"An introduction to enterprise systems for data and process integration, including ERP systems. ",
+        "prereq" : "Advanced Standing",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 35,
+    "fields": {
+        "course_id": "ECT424",
+        "name" : "Enterprise Infrastructure",
+        "description" :"Introduction to modern infrastructure and the evolving technology environment. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 36,
+    "fields": {
+        "course_id": "ECT480",
+        "name" : "Intranets and Portals",
+        "description" :"Intranet development methodology. Data warehousing concept and On-Line analytic processing (OLAP) for information management. Enterprise information portals (EIP).",
+        "prereq" : "ECT424",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 37,
+    "fields": {
+        "course_id": "HCI440",
+        "name" : "Introduction to User-Centered Design",
+        "description" :"The user-interface development process. Introduction to methods for practicing user-centered design including user and task analysis, user interface design principles and testing using low-fidelity prototypes. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 38,
+    "fields": {
+        "course_id": "IS431",
+        "name" : "Digital Product Management",
+        "description" :"This course focuses on the central role of the Product Manager in creating and sustaining compelling products and services throughout the product lifecycle. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 39,
+    "fields": {
+        "course_id": "IS440",
+        "name" : "Collaborative Technologies for Leading Projects",
+        "description" :"Study of the process of virtual teaming with emphasis on facilitation of different time project activities and facilitation of same time meetings. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 40,
+    "fields": {
+        "course_id": "IS455",
+        "name" : "Electronic Business",
+        "description" :"An introduction to electronic business. The topics include business models, technologies, business and social impact of e-business. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 41,
+    "fields": {
+        "course_id": "IS540",
+        "name" : "Global Information Technology",
+        "description" :"A study of the hardware, software, and techniques for using virtual information technologies to support teams working in a distributed, virtual, or global enviornments. ",
+        "prereq" : "Completion of five or more SoC MS level courses is required.",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 42,
+    "fields": {
+        "course_id": "IS556",
+        "name" : "Enterprise Project Management",
+        "description" :"This course covers how an enterprise coordinates and effectively manages all its IT projects and programs through program management and the IT program management office.",
+        "prereq" : "IS430 or PM430",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+	{
+    "model": "main.Courses",
+    "pk": 43,
+    "fields": {
+        "course_id": "IS565",
+        "name" : "IT Outsourcing",
+        "description" :"The course focuses on how organizations can use leverage of scale as a source for cost reduction; leverage of expertise for improved superior IT performance; leverage of access (e.g. location) to develop new strategies. ",
+        "prereq" : "Completion of five or more SoC MS level courses is required",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 44,
+    "fields": {
+        "course_id": "IS578",
+        "name" : "Information Technology Consulting",
+        "description" :"This course is for the IT professional. The emphasis is on examining the models, techniques, and skill development for providing effective IT consulting services. ",
+        "prereq" : " Completion of foundation or core phase.",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 45,
+    "fields": {
+        "course_id": "SE582",
+        "name" : "Software-Intensive Systems Engineering and Management",
+        "description" :"This course will introduce students to fundamental principles of systems engineering for large and complex software intensive systems. ",
+        "prereq" : "(SE477 or PM430 or IS430) and (SE430 or SE482 or IS485)",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 46,
+    "fields": {
+        "course_id": "IS577",
+        "name" : "CAPSTONE: Information Systems Policies and Strategies",
+        "description" :"This capstone course emphasizes the planning and management of information technologies and related resources at the corporate level. ",
+        "prereq" : "Completion of ten or more SoC MS level courses is required.",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 47,
+    "fields": {
+        "course_id": "IT411",
+        "name" : "Scripting for Interactive Systems",
+        "description" :"Introductory scripting for developing interactive web pages. Overview of HTML and CSS. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 48,
+    "fields": {
+        "course_id": "IS549",
+        "name" : "Data Warehousing",
+        "description" :"Introduction to data warehousing and the foundations of understanding the issues involved in building a successful data warehouse. ",
+        "prereq" : "CSC 451 or CSC 453 or CSC 455",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 49,
+    "fields": {
+        "course_id": "CSC454",
+        "name" : "Database Administration and Management",
+        "description" :"This course is designed to give students a comprehensive foundation in database administration and management. ",
+        "prereq" : " CSC 451 or CSC 453 or CSC 455",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 50,
+    "fields": {
+        "course_id": "CSC452",
+        "name" : "Database Programming",
+        "description" :"Programming in a large-scale relational database environment using procedural languages.",
+        "prereq" : "(CSC 453 or CSC 451 or CSC 455) and (CSC 401 or IT 411)",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 51,
+    "fields": {
+        "course_id": "CSC554",
+        "name" : "Advanced Database Management",
+        "description" :"In this class, we will discuss concepts, technologies, guiding principles, processes and best practices in managing database environment to meet high availability, scalability, and compliance needs. ",
+        "prereq" : "CSC 453 or CSC 454",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 52,
+    "fields": {
+        "course_id": "IPD451",
+        "name" : "Big Data and NoSQL Program",
+        "description" :"A 11-week certificate program covering popular NoSQL databases and how they fit with Big Data. ",
+        "prereq" : "none",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 53,
+    "fields": {
+        "course_id": "IS452",
+        "name" : "Big Data and the Internet of Things (Iot)",
+        "description" :"This course surveys system design concepts, techniques, and algorithms in Machine to Machine (M2M), Internet of Things (IoT), and Internet of Everything (IoE). ",
+        "prereq" : "None",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 54,
+    "fields": {
+        "course_id": "IS505",
+        "name" : "Business Continuity/Disaster Recovery Theories and Strategies",
+        "description" :"This course focuses on the knowledge necessary for an organization to prepare for a variety of major disruptions (floods, earthquakes, terrorist attacks, etc.).",
+        "prereq" : "None",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 55,
+    "fields": {
+        "course_id": "IS536",
+        "name" : "Enterprise Cloud Computing",
+        "description" :"Cloud concepts, architecture, and service management, with particular emphasis upon identifying and analyzing potential business applications of cloud computing.",
+        "prereq" : "None",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+  }
+  },
+  {
+    "model": "main.Courses",
+    "pk": 56,
+    "fields": {
+        "course_id": "IS550",
+        "name" : "Enterprise Data Management",
+        "description" :"This course focuses on the technical concepts and managerial knowledge needed to define, integrate and govern centralized and distributed data for a wide range of application systems used at large, multinational corporations. ",
+        "prereq" : "CSC 451 or CSC 453 or CSC 455",
+        "credits": 4,
+        "fall" : 1,
+        "winter": 1,
+        "spring" : 1,
+        "summer": 1,
+        "dormant": 0
+        }
+  }
 ]
