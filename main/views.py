@@ -7,9 +7,9 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from main.models import Users, Degrees, Courses, DegreeRequirements
-from main.frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
-
+from models import Users, Degrees, Courses, DegreeRequirements, CompletedClasses
+from frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
+from planner import Planner
 
 #INDEX PAGE
 def index(request):
@@ -71,12 +71,32 @@ def browse(request):
     return render(request,'main/browse.html',{'courses':courses, 'degrees':degrees})
 
 def plan(request):
+    if request.method == 'POST':
+        mjr     = request.POST['mjr']
+        start   = request.POST['start']
+        rate    = request.POST['rate']
+        
+        taken   = []
+        credits = 0
+        reqs    = DegreeRequirements.objects.filter(degree_id__id = mjr)
+        reqs    = [req.course_id for req in reqs]
+        courses = Courses.objects.all()
+        
+        if request.user.is_authenticated():
+            taken   = CompletedClasses.objects.filter(studentID = request.user.id)
+            usr     = Users.objects.get(usr_acct=request.user.id)
+            credits = usr.creditCnt
+        
+
+        plnr    = Planner(start, mjr, rate, reqs)
+        myplan  = plnr.plan(courses, taken, start, rate, credits)
+        
     form = PlanForm()
     return render(request,'main/plan.html',{'form':form})
 
 @login_required(login_url='login')
 def account(request):
-    classes_taken = []
+    classes_taken = CompletedClasses.objects.filter(studentID = request.user.id)
     permission = False
     
     if request.method == 'POST':
@@ -92,6 +112,15 @@ def account(request):
     studentlst = Users.objects.filter(isFaculty=False)
     return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken, 'studentlst':studentlst,'permission':permission})
 
+@login_required(login_url='login')
+def addClass(request):
+    classid =  request.POST['addclass']
+    crse    =  Courses.objects.get(course_id = classid)
+    usr     = Users.objects.get(usr_acct=request.user.id)
+    taken   =  CompletedClasses(studentID = usr, courseID = crse)
+    taken.save()
+    return HttpResponseRedirect('account')
+    
 @login_required(login_url='login')
 def view_student(request, username):
     uname = username

@@ -3,23 +3,23 @@
     "model": "main.DegreeRequirements",
     "pk": 1,
     "fields": {
-      "degree_id": 3,
-      "course_id": 1,
-      "required": 1,
-      "phase":1
+      "degree_id" : 3,
+      "course_id" : 1,
+      "required" : 1,
+      "phase" : 1
     }
   },
   {
     "model": "main.DegreeRequirements",
     "pk": 2,
     "fields": {
-      "degree_id": 3,
-      "course_id": 2,
-      "required": 1,
-      "phase":1
+      "degree_id" : 3,
+      "course_id" : 3,
+      "required" : 1,
+      "phase" : 1
     }
   },
-    {
+  {
     "model": "main.DegreeRequirements",
     "pk": 3,
     "fields": {

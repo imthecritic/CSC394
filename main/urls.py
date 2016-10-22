@@ -14,5 +14,6 @@ urlpatterns = [
     # url(r'^settings',views.settings, name="settings"),
     url(r'^coursecatalog',views.coursecatalog, name="coursecatalog"),
     url(r'^account',views.account, name="account"),
+    url(r'^addClass',views.addClass, name="addClass"),
     url(r'^view_student/(?P<username>\w+)',views.view_student,name='student view'),
 ]
