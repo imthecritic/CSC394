@@ -4,10 +4,6 @@
 
 {% block content %}
     <div class="container">
-    {% for req in degrees %}
-      <p>{{ req.course_id.name }}</p>
-    {% endfor %}
-      
     <h2>Master of Science: Computer Science</h2>
     <br>
     <b>Overview</b>
@@ -43,7 +39,7 @@
               
             <ul class="list-group">
           {% for degree in degrees %}
-          {% if degree.degree_id.name == "MS CS" %}
+          {% if degree.degree_id.name == "MS CS: Software and Systems Development" %}
                 <li class="list-group-item">
                   <a href="#" onclick= "return false;" data-toggle="popover" title="{{degree.course_id.description}}" 
                   data-content="Prerequisite(s): {{degree.course_id.prereq}}

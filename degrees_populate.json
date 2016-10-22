@@ -3,8 +3,8 @@
     "model": "main.Degrees",
     "pk": 1,
     "fields": {
-      "name": "BS CS",
-      "reqcredits": 120,
+      "name": "BS CS: Software Engineering Concentration",
+      "reqcredits": 192,
       "online": 1
     }
   },
