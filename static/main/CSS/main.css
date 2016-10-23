@@ -1,13 +1,18 @@
 h1 {
     text-align:center;
+    color:rgb(30,91,148);
+}
+
+h2{
+    color: rgb(30,91,148);
 }
 
 body{
-    background-color:rgb(253, 232, 255);
+    background-color:white;
 }
 
 .navbar-default{
-    background-color:rgb(102, 158, 249) !important;
+    background-color:rgb(29,66,103) !important;
     
 }
 
@@ -23,14 +28,15 @@ body{
 }
 
 .menu-box{
-    height:200px;
+    height:200;
     width:200px;
-    background-color:rgb(102, 158, 249);
+    background-color:rgb(29,66,103);
     color:white;
+    font-size: 2em;
 }
 
 .menu-box:hover{
-    background-color:rgb(102, 158, 249);
+    background-color:rgb(29,66,103);
     color:white;
     box-shadow: 5px 5px 2px #888888;
 }
