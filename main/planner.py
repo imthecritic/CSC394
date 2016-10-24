@@ -18,10 +18,10 @@ class Planner:
     #takes list of possible courses, start date, end date, class taking rate, number of credits needed 
     def plan(self, courses, taken, start, rate,credits):
         print credits
-        courses_taken   = taken
+        courses_taken   = list(taken)
         schedule        = []
         #visited       = []
-        allclasses      = copy.deepcopy(courses)
+        allclasses      = list(copy.deepcopy(courses))
         term = int(copy.deepcopy(start))
         rate = int(rate)
         initial = state(courses_taken, [], allclasses, term,rate,rate)
@@ -72,7 +72,8 @@ class Planner:
                     trm += 1
                 if trm > 4:
                     trm = 1
-                s.append(course)
+                s.append(course) #append course to schedule
+                t.append(course.course_id) #append course to taken
                 a = list(a)
                 a.pop(i)
                 new_state = state(t, s, a,trm,class_rate,rt)
@@ -104,8 +105,10 @@ class Planner:
     #returns True if class prereqs have been met      
     #returns false otherwise or if course is in taken
     def validPrereq(self, crse, taken):
-        tkn_names = [cls.name.lower() for cls in taken]
-        if crse.name in tkn_names: 
+        print taken
+        tkn_names = taken
+        #tkn_names = [cls.course_id.lower() for cls in taken]
+        if crse.course_id in tkn_names: 
             return False
         elif crse.prereq.lower() == "none":
             return True
