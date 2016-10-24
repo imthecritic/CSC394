@@ -78,6 +78,7 @@ def plan(request):
         
         taken   = []
         credits = 0
+        deg_cred = Degrees.objects.get(id = mjr)
         reqs    = DegreeRequirements.objects.filter(degree_id__id = mjr)
         reqs    = [req.course_id for req in reqs]
         courses = Courses.objects.all()
@@ -89,7 +90,7 @@ def plan(request):
         
 
         plnr    = Planner(start, mjr, rate, reqs)
-        myplan  = plnr.plan(courses, taken, start, rate, credits)
+        myplan  = plnr.plan(courses, taken, start, rate, deg_cred)
         
     form = PlanForm()
     return render(request,'main/plan.html',{'form':form})

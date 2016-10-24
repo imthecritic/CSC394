@@ -17,12 +17,14 @@ class Planner:
     #test comment
     #takes list of possible courses, start date, end date, class taking rate, number of credits needed 
     def plan(self, courses, taken, start, rate,credits):
+        print credits
         courses_taken   = taken
         schedule        = []
         #visited       = []
         allclasses      = copy.deepcopy(courses)
-        term = copy.deepcopy(start)
-        initial = state(courses_taken, [], allclasses, term)
+        term = int(copy.deepcopy(start))
+        rate = int(rate)
+        initial = state(courses_taken, [], allclasses, term,rate,rate)
         options = self.getSuccessors(initial)
         cls_cntr = 0
         #search loop  - while options have not been exhausted
@@ -38,7 +40,8 @@ class Planner:
                     term = term + 1 #set new term
                     if term == 4: term = 1
             options = self.getSuccessors(current) + options
-               
+        
+        print ("done")       
         return [] # loop has failed         
                     
          
@@ -61,11 +64,18 @@ class Planner:
                 a = copy.deepcopy(plnr.available)
                 s = copy.deepcopy(plnr.schedule)
                 trm = copy.deepcopy(plnr.currterm)
+                rt = copy.deepcopy(plnr.rate_avail)
+                class_rate = copy.deepcopy(plnr.rate)
+                rt = rt - 1
+                if rt == 0: 
+                    rt = class_rate
+                    trm += 1
+                if trm > 4:
+                    trm = 1
                 s.append(course)
                 a = list(a)
                 a.pop(i)
-                
-                new_state = state(t, a, s,trm)
+                new_state = state(t, s, a,trm,class_rate,rt)
                 options.append(new_state)
                 #options = self.insertOption(options, courses_taken, course,current_total + estimate)
             i += 1 
@@ -95,32 +105,72 @@ class Planner:
     #returns false otherwise or if course is in taken
     def validPrereq(self, crse, taken):
         tkn_names = [cls.name.lower() for cls in taken]
-        if crse in taken: 
+        if crse.name in tkn_names: 
             return False
-        elif crse.prereqs.lower() == "none":
-            return 
+        elif crse.prereq.lower() == "none":
+            return True
         elif crse.prereq[0] == "*": #special cases - need help with this
-                return False
+            return False
         else:
-            pre = crse.prereqs.lower()
+            pre = crse.prereq.lower()
             pre = pre.split(" ")
+            valid = self.helper(pre,tkn_names)
+            return valid    
             
-                
-            
-            
+        return False
         
         #return True
-    def helper(self, pre, crse, tkn_names):
+    def helper(self, pre, tkn_names):
         i = 0
+        lst_len = len(pre)
         bracket = False
-        while i < len(pre):
-            if pre[i] == "(":
+        while i < lst_len:
+            if pre[i] == "(": #enter bracket condition
                 bracket = True
             elif pre[i] == ")":
                 bracket = False
-            elif pre[i] in tkn_names:
-                if i + 1:
-                    pass
+            elif pre[i] in tkn_names: # if class has been taken
+                if i + 1 < lst_len: #if next element is valid index
+                    if pre[i+1] == "or":
+                        if not bracket: # no bracket prereqs have been met
+                            return True
+                        else:
+                            while i < lst_len:
+                                if pre[i] == ")" : #bracket is satisfied increase i until out of bracket
+                                    bracket = False
+                                    break
+                                i += 1
+                            i += 1
+                            if i >= lst_len -1: return True #if end of list return True
+                    elif pre[i+1] == "and": #prereq not met, increment i 
+                        i += 1
+                    elif i + 1 == lst_len -1: #end of list reqs met
+                        return True
+                else: #all reqs met
+                    return True
+            elif pre[i] == "or" or pre[i] == "and": #continue if condition statement
+                pass
+            else: # not in taken
+                if i + 1 < lst_len: #if next element is valid index
+                    if pre[i+1] != "or": #return false unless an or is next
+                        if not bracket:
+                            return False
+                        else:
+                            while i < lst_len -1:
+                                if pre[i] == ")" : #bracket is satisfied increase i until out of bracket
+                                    bracket == False
+                                    if pre[i+1] == "and": #if next is and - you've failed 
+                                        return False
+                                    else:
+                                        #i += 1 # increament pre[i] == "or"
+                                        break
+                                i += 1 
+                    else:
+                        i += 1 #increment pre[i] ==  "or"
+    
+            i += 1
+    
+        return False
                 
     
     #returns True if class offered this term
@@ -140,9 +190,11 @@ class state:
     #course list
     #current term
     #current 
-    def __init__(self, tkn, sched, avail, trm):
+    def __init__(self, tkn, sched, avail, trm, rat,rt):
         self.taken      = tkn
         self.schedule   = sched
         self.available  = avail
         self.currterm   = trm
+        self.rate       = rat
+        self.rate_avail = rt
         
