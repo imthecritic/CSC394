@@ -21,7 +21,6 @@ class Planner:
         schedule        = []
         #visited       = []
         allclasses      = copy.deepcopy(courses)
-        print allclasses
         term = copy.deepcopy(start)
         initial = state(courses_taken, [], allclasses, term)
         options = self.getSuccessors(initial)
@@ -31,19 +30,19 @@ class Planner:
             current = options.pop(0)
             cls_cntr += 1
             if self.isGoal(current, credits):
+                print current.schedule
                 return current
             else:
                 if cls_cntr == rate:#number of classes for term has been acheived
                     cls_cntr = 0
                     term = term + 1 #set new term
                     if term == 4: term = 1
-            options += self.getSuccessors(current)
-                
+            options = self.getSuccessors(current) + options
+               
         return [] # loop has failed         
                     
          
             
-   
     def isGoal(self, opt, degreecredits):#return true if schedule is satisfied
         if (len(opt.schedule)*4 >= degreecredits):
             return True
@@ -67,11 +66,9 @@ class Planner:
                 a.pop(i)
                 
                 new_state = state(t, a, s,trm)
-                print new_state
                 options.append(new_state)
                 #options = self.insertOption(options, courses_taken, course,current_total + estimate)
             i += 1 
-        print options
         return options
                 
     
@@ -97,32 +94,55 @@ class Planner:
     #returns True if class prereqs have been met      
     #returns false otherwise or if course is in taken
     def validPrereq(self, crse, taken):
-        return True
-       # if crse in taken: return False
-        #for required in crse.prereqs:
-         #   if required not in taken:
-          #      return False
-        #return True
+        tkn_names = [cls.name.lower() for cls in taken]
+        if crse in taken: 
+            return False
+        elif crse.prereqs.lower() == "none":
+            return 
+        elif crse.prereq[0] == "*": #special cases - need help with this
+                return False
+        else:
+            pre = crse.prereqs.lower()
+            pre = pre.split(" ")
+            
+                
+            
+            
         
+        #return True
+    def helper(self, pre, crse, tkn_names):
+        i = 0
+        bracket = False
+        while i < len(pre):
+            if pre[i] == "(":
+                bracket = True
+            elif pre[i] == ")":
+                bracket = False
+            elif pre[i] in tkn_names:
+                if i + 1:
+                    pass
+                
     
     #returns True if class offered this term
     def offered(self, crse, trm):
-        return True
-#        if trm == 1:
- #           return crse.fall
-#        elif trm == 2:
- #           return crse.winter
-  #      elif trm == 3:
-   #         return crse.spring
-    #    else: 
-   #         return False
+        if trm == 1:
+            return crse.fall
+        elif trm == 2:
+            return crse.winter
+        elif trm == 3:
+            return crse.spring
+        elif trm == 4:
+            return crse.summer
+        else:
+            return False
         
 class state:
     #course list
     #current term
-    #current estimate
+    #current 
     def __init__(self, tkn, sched, avail, trm):
         self.taken      = tkn
         self.schedule   = sched
         self.available  = avail
         self.currterm   = trm
+        
