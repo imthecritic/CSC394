@@ -71,6 +71,7 @@ def browse(request):
     return render(request,'main/browse.html',{'courses':courses, 'degrees':degrees})
 
 def plan(request):
+    myplan = [[]]
     if request.method == 'POST':
         mjr     = request.POST['mjr']
         start   = request.POST['start']
@@ -90,10 +91,10 @@ def plan(request):
         
 
         plnr    = Planner(start, mjr, rate, reqs)
-        myplan  = plnr.plan(courses, taken, start, rate, deg_cred)
+        myplan  = plnr.plan(courses, taken, start, rate, deg_cred.reqcredits)
         
     form = PlanForm()
-    return render(request,'main/plan.html',{'form':form})
+    return render(request,'main/plan.html',{'form':form,'plan':myplan})
 
 @login_required(login_url='login')
 def account(request):

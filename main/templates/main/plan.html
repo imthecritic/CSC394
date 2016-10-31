@@ -7,5 +7,16 @@
          {{ form.as_p }}
          <input class="btn btn-primary" type="submit" value="Go" />
         </form>
+        
+        <div class="container">
+            {% for trm in plan %}
+                <div class="row">
+                    {% for cls in trm %}
+                        <p>{{ cls }}</p>
+                    {% endfor %}
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
