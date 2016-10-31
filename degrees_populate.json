@@ -1,24 +1,6 @@
 [
   {
     "model": "main.Degrees",
-    "pk": 1,
-    "fields": {
-      "name": "BS CS: Software Engineering Concentration",
-      "reqcredits": 192,
-      "online": 1
-    }
-  },
-  {
-    "model": "main.Degrees",
-    "pk": 2,
-    "fields": {
-      "name": "BS IS: Standard",
-      "reqcredits": 192,
-      "online": 1
-    }
-  },
-  {
-    "model": "main.Degrees",
     "pk": 3,
     "fields": {
       "name": "MS CS: Software and Systems Development",

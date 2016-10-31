@@ -7,9 +7,9 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from models import Users, Degrees, Courses, DegreeRequirements, CompletedClasses
-from frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
-from planner import Planner
+from main.models import Users, Degrees, Courses, DegreeRequirements, CompletedClasses
+from main.frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
+from main.planner import Planner
 
 #INDEX PAGE
 def index(request):

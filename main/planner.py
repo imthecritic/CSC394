@@ -17,7 +17,7 @@ class Planner:
     #test comment
     #takes list of possible courses, start date, end date, class taking rate, number of credits needed 
     def plan(self, courses, taken, start, rate,credits):
-        print credits
+        print (credits)
         courses_taken   = list(taken)
         schedule        = []
         #visited       = []
@@ -33,11 +33,11 @@ class Planner:
             current = options.pop(0)
             if  len(current.schedule) > maxsize:
                 maxsize = len(current.schedule)
-                print maxsize
+                print (maxsize)
             cls_cntr += 1
             if self.isGoal(current, credits):
-                print current.schedule
-                print "finished"
+                print (current.schedule)
+                print ("finished")
                 return self.beautify_planner(current.schedule, start, rate)
             else:
                 if cls_cntr == rate:#number of classes for term has been acheived
