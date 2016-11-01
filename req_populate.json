@@ -11,16 +11,6 @@
   },
   {
     "model": "main.DegreeRequirements",
-    "pk": 2,
-    "fields": {
-      "degree_id" : 3,
-      "course_id" : 3,
-      "required" : 1,
-      "phase" : 1
-    }
-  },
-  {
-    "model": "main.DegreeRequirements",
     "pk": 3,
     "fields": {
       "degree_id": 3,
@@ -29,7 +19,6 @@
       "phase":1
     }
   },
-  
     {
     "model": "main.DegreeRequirements",
     "pk": 4,
@@ -597,6 +586,26 @@
       "degree_id": 4,
       "course_id": 56,
       "required": 0,
+      "phase":1
+    }
+  },
+  {
+    "model": "main.DegreeRequirements",
+    "pk": 61,
+    "fields": {
+      "degree_id" : 3,
+      "course_id" : 2,
+      "required" : 1,
+      "phase" : 1
+    }
+  },
+  {
+    "model": "main.DegreeRequirements",
+    "pk": 62,
+    "fields": {
+      "degree_id": 3,
+      "course_id": 3,
+      "required": 1,
       "phase":1
     }
   }
