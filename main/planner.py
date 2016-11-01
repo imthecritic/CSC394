@@ -43,8 +43,8 @@ class Planner:
                 print("  ")
                 maxsize = len(current.schedule)
             if self.isGoal(current, credits):
-                print current.schedule
-                print "finished"
+                print (current.schedule)
+                print ("finished")
                 return self.beautify_planner(current.schedule, start, rate)
             else:
                 if cls_cntr == rate:#number of classes for term has been acheived
