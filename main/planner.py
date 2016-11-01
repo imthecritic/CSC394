@@ -17,8 +17,10 @@ class Planner:
     #test comment
     #takes list of possible courses, start date, end date, class taking rate, number of credits needed 
     def plan(self, courses, taken, start, rate,credits):
-        print credits
+        print("  \n\n\n")
         courses_taken   = list(taken)
+        courses_taken    = [cls.courseID.course_id.lower() for cls in taken]
+        print courses_taken
         schedule        = []
         #visited       = []
         allclasses      = list(copy.deepcopy(courses))
@@ -30,11 +32,16 @@ class Planner:
         maxsize = 0
         #search loop  - while options have not been exhausted
         while(len(options) != 0):
-            current = options.pop(0)
-            if  len(current.schedule) > maxsize:
-                maxsize = len(current.schedule)
-                print maxsize
             cls_cntr += 1
+            current = options.pop(0)
+            #if cls_cntr == 2:
+                
+            #    return current
+            if  len(current.schedule) >= maxsize:
+                print maxsize
+                #for c in current.schedule: print c.name, c.course_id
+                print("  ")
+                maxsize = len(current.schedule)
             if self.isGoal(current, credits):
                 print current.schedule
                 print "finished"
@@ -63,6 +70,7 @@ class Planner:
         i = 0
         for course in plnr.available:
             if self.validPrereq(course, plnr.taken) and  self.offered(course,plnr.currterm): #course is valid insert to options
+                #print course.name, course.course_id
                 #check if 
                 #estimate    = self.getEstimate(course, courses_taken, courses)
                 t = copy.deepcopy(plnr.taken)
@@ -126,22 +134,23 @@ class Planner:
     #returns True if class prereqs have been met      
     #returns false otherwise or if course is in taken
     def validPrereq(self, crse, taken):
-        return True
-        # tkn_names = taken
-        # #tkn_names = [cls.course_id.lower() for cls in taken]
-        # if crse.course_id in tkn_names: 
-        #     return False
-        # elif crse.prereq.lower() == "none":
-        #     return True
-        # elif crse.prereq[0] == "*": #special cases - need help with this
-        #     return False
-        # else:
-        #     pre = crse.prereq.lower()
-        #     pre = pre.split(" ")
-        #     valid = self.helper(pre,tkn_names)
-        #     return valid    
-            
-        # return False
+        #return True
+        tkn_names = taken
+        #tkn_names = [cls.course_id.lower() for cls in taken]
+        if crse.course_id in tkn_names: 
+            return False
+        elif crse.prereq.lower() == "none":
+            return True
+        elif crse.prereq[0] == "*": #special cases - need help with this
+            return False
+        else:
+            pre = crse.prereq.lower()
+            pre = pre.split(" ")
+            #print (pre)
+            valid = self.helper(pre,tkn_names)
+            #print crse.name, valid
+            return valid
+        return False
         
         #return True
     def helper(self, pre, tkn_names):

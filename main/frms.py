@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class PlanForm(forms.Form):
     mjr     = forms.ChoiceField(label="Major", choices=[(1,'BS CS: Software Engineering Concentration'),(2,'BS IS: Standard'),(3,'MS CS: Software and Systems Development'),(4,'MS IS: Business Analysis/Systems Analysis'), (5,'MS IS: Standard')],required=True)
     start   = forms.ChoiceField(label="Start", choices=[(1,'Fall'),(2,'Winter'),(3,'Spring'),(4,'Summer')],required=True)
-    rate    = forms.ChoiceField(label="Rate", choices=[(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),(6,'6')],required=True)
+    rate    = forms.ChoiceField(label="Rate", choices=[(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5')],required=True)
 
     
 class AccountForm(forms.Form):
