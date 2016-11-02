@@ -45,7 +45,7 @@ class Planner:
             if self.isGoal(current, credits):
                 print (current.schedule)
                 print ("finished")
-                return self.beautify_planner(current.schedule, start, rate)
+                return self.beautify_planner(current.schedule + current.termsched, start, rate)
             else:
                 if cls_cntr == rate:#number of classes for term has been acheived
                     cls_cntr = 0
@@ -59,7 +59,7 @@ class Planner:
          
             
     def isGoal(self, opt, degreecredits):#return true if schedule is satisfied
-        if (len(opt.taken)*4 >= degreecredits):
+        if ((len(opt.taken) + len(opt.termsched)) *4 >= degreecredits):
             return True
         else:
             return False
