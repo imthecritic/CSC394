@@ -21,13 +21,13 @@ class Planner:
         courses_taken   = list(taken)
         courses_taken    = [cls.courseID.course_id.lower() for cls in taken]
         print courses_taken
-        schedule        = []
-        #visited       = []
+        schedule    = []
+        tsched      = []
         allclasses      = list(copy.deepcopy(courses))
         for c in allclasses: print(c.name)
         term = int(copy.deepcopy(start))
         rate = int(rate)
-        initial = state(courses_taken, [], allclasses, term,rate,rate)
+        initial = state(courses_taken,tsched, [],allclasses, term,rate,rate)
         options = self.getSuccessors(initial)
         cls_cntr = 0
         maxsize = 0
@@ -74,22 +74,28 @@ class Planner:
                 #check if 
                 #estimate    = self.getEstimate(course, courses_taken, courses)
                 t = copy.deepcopy(plnr.taken)
+                ts = copy.deepcopy(plnr.termsched)
                 a = copy.deepcopy(plnr.available)
                 s = copy.deepcopy(plnr.schedule)
                 trm = copy.deepcopy(plnr.currterm)
                 rt = copy.deepcopy(plnr.rate_avail)
                 class_rate = copy.deepcopy(plnr.rate)
-                rt = rt - 1
-                if rt == 0: 
+                
+                ts.append(course.course_id.lower())
+                rt = rt - 1 
+                if rt == 0:     #term is full of classes
                     rt = class_rate
-                    trm += 1
+                    trm += 1    #increase term
+                    t += ts     #add term courses to taken
+                    ts = []
                 if trm > 4:
                     trm = 1
+                    
                 s.append(course) #append course to schedule
-                t.append(course.course_id.lower()) #append course to taken
+                #t.append(course.course_id.lower()) #append course to taken
                 a = list(a)
                 a.pop(i)
-                new_state = state(t, s, a,trm,class_rate,rt)
+                new_state = state(t, ts, s, a,trm,class_rate,rt)
                 options.append(new_state)
                 #options = self.insertOption(options, courses_taken, course,current_total + estimate)
             i += 1 
@@ -224,8 +230,9 @@ class state:
     #course list
     #current term
     #current 
-    def __init__(self, tkn, sched, avail, trm, rat,rt):
+    def __init__(self, tkn, tsched, sched, avail, trm, rat,rt):
         self.taken      = tkn
+        self.termsched  = tsched
         self.schedule   = sched
         self.available  = avail
         self.currterm   = trm
