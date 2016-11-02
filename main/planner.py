@@ -17,28 +17,35 @@ class Planner:
     #test comment
     #takes list of possible courses, start date, end date, class taking rate, number of credits needed 
     def plan(self, courses, taken, start, rate,credits):
-        print (credits)
+        print("  \n\n\n")
         courses_taken   = list(taken)
-        schedule        = []
-        #visited       = []
+        courses_taken    = [cls.courseID.course_id.lower() for cls in taken]
+        print courses_taken
+        schedule    = []
+        tsched      = []
         allclasses      = list(copy.deepcopy(courses))
+        for c in allclasses: print(c.name)
         term = int(copy.deepcopy(start))
         rate = int(rate)
-        initial = state(courses_taken, [], allclasses, term,rate,rate)
+        initial = state(courses_taken,tsched, [],allclasses, term,rate,rate)
         options = self.getSuccessors(initial)
         cls_cntr = 0
         maxsize = 0
         #search loop  - while options have not been exhausted
         while(len(options) != 0):
-            current = options.pop(0)
-            if  len(current.schedule) > maxsize:
-                maxsize = len(current.schedule)
-                print (maxsize)
             cls_cntr += 1
+            current = options.pop(0)
+            # if cls_cntr == 3:
+            #     return current
+            if  len(current.schedule) > maxsize:
+                print(len(current.schedule))
+                for c in current.schedule: print c.name, c.course_id
+                print("  ")
+                maxsize = len(current.schedule)
             if self.isGoal(current, credits):
                 print (current.schedule)
                 print ("finished")
-                return self.beautify_planner(current.schedule, start, rate)
+                return self.beautify_planner(current.schedule + current.termsched, start, rate)
             else:
                 if cls_cntr == rate:#number of classes for term has been acheived
                     cls_cntr = 0
@@ -52,7 +59,7 @@ class Planner:
          
             
     def isGoal(self, opt, degreecredits):#return true if schedule is satisfied
-        if (len(opt.schedule)*4 >= degreecredits):
+        if ((len(opt.taken) + len(opt.termsched)) *4 >= degreecredits):
             return True
         else:
             return False
@@ -63,25 +70,32 @@ class Planner:
         i = 0
         for course in plnr.available:
             if self.validPrereq(course, plnr.taken) and  self.offered(course,plnr.currterm): #course is valid insert to options
+                #print course.name, course.course_id, "GOOD"
                 #check if 
                 #estimate    = self.getEstimate(course, courses_taken, courses)
                 t = copy.deepcopy(plnr.taken)
+                ts = copy.deepcopy(plnr.termsched)
                 a = copy.deepcopy(plnr.available)
                 s = copy.deepcopy(plnr.schedule)
                 trm = copy.deepcopy(plnr.currterm)
                 rt = copy.deepcopy(plnr.rate_avail)
                 class_rate = copy.deepcopy(plnr.rate)
-                rt = rt - 1
-                if rt == 0: 
+                
+                ts.append(course.course_id.lower())
+                rt = rt - 1 
+                if rt == 0:     #term is full of classes
                     rt = class_rate
-                    trm += 1
+                    trm += 1    #increase term
+                    t += ts     #add term courses to taken
+                    ts = []
                 if trm > 4:
                     trm = 1
+                    
                 s.append(course) #append course to schedule
-                t.append(course.course_id) #append course to taken
+                #t.append(course.course_id.lower()) #append course to taken
                 a = list(a)
                 a.pop(i)
-                new_state = state(t, s, a,trm,class_rate,rt)
+                new_state = state(t, ts, s, a,trm,class_rate,rt)
                 options.append(new_state)
                 #options = self.insertOption(options, courses_taken, course,current_total + estimate)
             i += 1 
@@ -95,7 +109,7 @@ class Planner:
         st = int(start) - 1
         curr.append(term_names[st])
         for cls in planner:
-            curr.append(cls.name)
+            curr.append(cls.course_id + ": " + cls.name)
             i += 1
             if i % (rate) == 0:
                 st += 1
@@ -126,22 +140,24 @@ class Planner:
     #returns True if class prereqs have been met      
     #returns false otherwise or if course is in taken
     def validPrereq(self, crse, taken):
-        return True
-        # tkn_names = taken
-        # #tkn_names = [cls.course_id.lower() for cls in taken]
-        # if crse.course_id in tkn_names: 
-        #     return False
-        # elif crse.prereq.lower() == "none":
-        #     return True
-        # elif crse.prereq[0] == "*": #special cases - need help with this
-        #     return False
-        # else:
-        #     pre = crse.prereq.lower()
-        #     pre = pre.split(" ")
-        #     valid = self.helper(pre,tkn_names)
-        #     return valid    
-            
-        # return False
+        #return True
+        tkn_names = taken
+        #tkn_names = [cls.course_id.lower() for cls in taken]
+        if crse.course_id.lower() in tkn_names: 
+            return False
+        elif crse.prereq.lower() == "none":
+            return True
+        elif crse.prereq[0] == "*": #special cases - need help with this
+            return False
+        else:
+            #print crse.name
+            pre = crse.prereq.lower()
+            pre = pre.split(" ")
+            #print (pre, taken)
+            valid = self.helper(pre,tkn_names)
+            #print crse.name, valid
+            return valid
+        return False
         
         #return True
     def helper(self, pre, tkn_names):
@@ -214,8 +230,9 @@ class state:
     #course list
     #current term
     #current 
-    def __init__(self, tkn, sched, avail, trm, rat,rt):
+    def __init__(self, tkn, tsched, sched, avail, trm, rat,rt):
         self.taken      = tkn
+        self.termsched  = tsched
         self.schedule   = sched
         self.available  = avail
         self.currterm   = trm

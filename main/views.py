@@ -67,7 +67,7 @@ def coursecatalog(request):
 
 def browse(request):
     courses = Courses.objects.all()
-    degrees = DegreeRequirements.objects.all().order_by('degree_id')
+    degrees = DegreeRequirements.objects.all().order_by('course_id__course_id')
     return render(request,'main/browse.html',{'courses':courses, 'degrees':degrees})
 
 def plan(request):
@@ -80,12 +80,18 @@ def plan(request):
         taken   = []
         credits = 0
         deg_cred = Degrees.objects.get(id = mjr)
-        reqs    = DegreeRequirements.objects.filter(degree_id__id = mjr)
-        reqs    = [req.course_id for req in reqs]
+        reqs_cls    = DegreeRequirements.objects.filter(degree_id__id = mjr).order_by('-required','course_id__course_id')
+        reqs    = [req.course_id for req in reqs_cls]
+        for r in reqs: print r.course_id
+        print (" \n\n")
         courses = Courses.objects.all()
+        courses = [c for c in courses if c not in reqs]
+        courses = reqs + courses
         
         if request.user.is_authenticated():
             taken   = CompletedClasses.objects.filter(studentID = request.user.id)
+            t    = [cls.courseID for cls in taken]
+            courses = [c for c in courses if c not in t]
             usr     = Users.objects.get(usr_acct=request.user.id)
             credits = usr.creditCnt
         
