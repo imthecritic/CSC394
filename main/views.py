@@ -136,11 +136,14 @@ def addClass(request):
 @login_required(login_url='login')
 def removeClass(request):
     classid = request.POST['removeClass']
-    crse    =  Courses.objects.get(course_id = classid)
-    usr     = Users.objects.get(usr_acct=request.user.id)
-    CompletedClasses.objects.filter(studentID = usr, courseID = crse).delete()
-    return HttpResponse("""<script type='text/javascript'>alert ('Class Removed!'); 
+    try:
+        crse    =  Courses.objects.get(course_id = classid)
+        usr     = Users.objects.get(usr_acct=request.user.id)
+        CompletedClasses.objects.filter(studentID = usr, courseID = crse).delete()
+        return HttpResponse("""<script type='text/javascript'>alert ('Class Removed!'); 
                                 window.parent.location.href = '/main/account';</script>""")   
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect('account')
     
 @login_required(login_url='login')
 def view_student(request, username):
