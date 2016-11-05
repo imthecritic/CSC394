@@ -20,7 +20,7 @@ class Planner:
         print("  \n\n\n")
         courses_taken   = list(taken)
         courses_taken    = [cls.courseID.course_id.lower() for cls in taken]
-        print courses_taken
+        print (courses_taken)
         schedule    = []
         tsched      = []
         allclasses      = list(copy.deepcopy(courses))
@@ -39,7 +39,7 @@ class Planner:
             #     return current
             if  len(current.schedule) > maxsize:
                 print(len(current.schedule))
-                for c in current.schedule: print c.name, c.course_id
+                for c in current.schedule: print (c.name, c.course_id)
                 print("  ")
                 maxsize = len(current.schedule)
             if self.isGoal(current, credits):

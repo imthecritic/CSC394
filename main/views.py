@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from main.form import RegistrationForm
 from django.shortcuts import get_object_or_404, render
+from django.core.exceptions import ObjectDoesNotExist
 
 
 from django.contrib.auth import authenticate, login, logout
@@ -82,7 +83,7 @@ def plan(request):
         deg_cred = Degrees.objects.get(id = mjr)
         reqs_cls    = DegreeRequirements.objects.filter(degree_id__id = mjr).order_by('-required','course_id__course_id')
         reqs    = [req.course_id for req in reqs_cls]
-        for r in reqs: print r.course_id
+        for r in reqs: print (r.course_id)
         print (" \n\n")
         courses = Courses.objects.all()
         courses = [c for c in courses if c not in reqs]
@@ -106,7 +107,6 @@ def plan(request):
 def account(request):
     classes_taken = CompletedClasses.objects.filter(studentID = request.user.id)
     permission = False
-    
     if request.method == 'POST':
         form = AccountForm(request.POST)
         if form.is_valid():
@@ -123,11 +123,24 @@ def account(request):
 @login_required(login_url='login')
 def addClass(request):
     classid =  request.POST['addclass']
+    try:
+        crse    =  Courses.objects.get(course_id = classid)
+        usr     = Users.objects.get(usr_acct=request.user.id)
+        taken   =  CompletedClasses(studentID = usr, courseID = crse)
+        taken.save()
+        return HttpResponseRedirect('account')
+    except ObjectDoesNotExist:
+        return HttpResponse("""<script type='text/javascript'>alert ('Class Does Not Exist! Try Again!'); 
+                                window.parent.location.href = '/main/account';</script>""")
+                                
+@login_required(login_url='login')
+def removeClass(request):
+    classid = request.POST['removeClass']
     crse    =  Courses.objects.get(course_id = classid)
     usr     = Users.objects.get(usr_acct=request.user.id)
-    taken   =  CompletedClasses(studentID = usr, courseID = crse)
-    taken.save()
-    return HttpResponseRedirect('account')
+    CompletedClasses.objects.filter(studentID = usr, courseID = crse).delete()
+    return HttpResponse("""<script type='text/javascript'>alert ('Class Removed!'); 
+                                window.parent.location.href = '/main/account';</script>""")   
     
 @login_required(login_url='login')
 def view_student(request, username):

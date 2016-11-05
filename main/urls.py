@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^coursecatalog',views.coursecatalog, name="coursecatalog"),
     url(r'^account',views.account, name="account"),
     url(r'^addClass',views.addClass, name="addClass"),
+    url(r'^removeClass',views.removeClass, name="removeClass"),
     url(r'^view_student/(?P<username>\w+)',views.view_student,name='student view'),
 ]
