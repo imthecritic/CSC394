@@ -45,6 +45,7 @@ class Planner:
             if self.isGoal(current, credits):
                 print (current.schedule)
                 print ("finished")
+                print (current.termsched)
                 return self.beautify_planner(current.schedule + current.termsched, start, rate)
             else:
                 if cls_cntr == rate:#number of classes for term has been acheived
@@ -81,12 +82,12 @@ class Planner:
                 rt = copy.deepcopy(plnr.rate_avail)
                 class_rate = copy.deepcopy(plnr.rate)
                 
-                ts.append(course.course_id.lower())
+                ts.append(course)
                 rt = rt - 1 
                 if rt == 0:     #term is full of classes
                     rt = class_rate
                     trm += 1    #increase term
-                    t += ts     #add term courses to taken
+                    t += [c.course_id.lower() for c in ts]     #add term courses to taken
                     ts = []
                 if trm > 4:
                     trm = 1
