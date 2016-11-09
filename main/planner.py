@@ -46,7 +46,7 @@ class Planner:
                 print (current.schedule)
                 print ("finished")
                 print (current.termsched)
-                return self.beautify_planner(current.schedule + current.termsched, start, rate)
+                return self.beautify_planner(current.schedule, start, rate)
             else:
                 if cls_cntr == rate:#number of classes for term has been acheived
                     cls_cntr = 0
@@ -61,6 +61,12 @@ class Planner:
             
     def isGoal(self, opt, degreecredits):#return true if schedule is satisfied
         if ((len(opt.taken) + len(opt.termsched)) *4 >= degreecredits):
+            tkn = [c.course_id.lower() for c in opt.termsched] + opt.taken
+            reqs = [c.course_id.lower() for c in self.reqs] 
+            for r in reqs:
+                if r not in tkn: 
+                    return False
+
             return True
         else:
             return False
@@ -111,6 +117,7 @@ class Planner:
         curr.append(term_names[st])
         for cls in planner:
             curr.append(cls.course_id + ": " + cls.name)
+            print cls.name
             i += 1
             if i % (rate) == 0:
                 st += 1
@@ -118,26 +125,12 @@ class Planner:
                 new_plan.append(curr)
                 curr = []
                 curr.append(term_names[st])
+        if len(curr) != 0:
+            new_plan.append(curr)
         return new_plan
     
-    #insert course into option list according to estimate            
-    def insertOption(self,options,crse_taken, crse,est):
-        if len(options == 0):
-            return [([crse],est)]
-        else:
-            lst = [crse_taken] + [crse]
-            for i in range(len(options)):
-                if options[i][1] <= est:
-                    options.insert(i,(lst,est)) #insert option 
-                    return options
-        options.append((lst,est))
-        return options
             
-    #calculates a heuristic value for the class   
-    #requirement for degree and number of prereqs the class satisfies as a heuristic.
-    def getEstimate(self, crse, crs_tkn, crselst):
-        pass
-     
+
     #returns True if class prereqs have been met      
     #returns false otherwise or if course is in taken
     def validPrereq(self, crse, taken):
