@@ -9,7 +9,19 @@
             <input class="btn btn-primary submitbtn" type="submit" value="Update Account" />           
         </div>
         </form>
-        <form method="post" action="addClass">
+
+        {% if permission %}
+        <h3>Students</h4>
+        {% for stu in studentlst %}
+            <div class="row">
+                {% url 'view_student' username=stu.usr_acct.username as student_url %}
+                <a href="view_student/{{ stu.usr_acct.username }}"><input class="btn btn-default" value="{{ stu.usr_acct.username }}"></a>
+            </div>
+        {% endfor %}
+        
+        {%else %}
+        
+                <form method="post" action="addClass">
         <h3>My Plans</h3>
             <p>show plans here</p>
         <h3>Classes Taken</h3>
@@ -23,14 +35,6 @@
         <form method="post" action="removeClass">
                 <input name="removeClass"/><input class="btn btn-primary submitbtn" type="submit" value="Remove Class"/>
         </form>
-        {% if permission %}
-        <h3>Students</h4>
-        {% for stu in studentlst %}
-            <div class="row">
-                {% url 'view_student' username=stu.usr_acct.username as student_url %}
-                <a href="view_student/{{ stu.usr_acct.username }}"><input class="btn btn-default" value="{{ stu.usr_acct.username }}"></a>
-            </div>
-        {% endfor %}
         {% endif %}
     </div>
 {% endblock %}
