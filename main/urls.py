@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^addClass',views.addClass, name="addClass"),
     url(r'^removeClass',views.removeClass, name="removeClass"),
     url(r'^view_student/(?P<username>\w+)',views.view_student,name='student view'),
+    url(r'^view_path/(?P<pth_id>\w+)',views.view_path ,name='path view'),
 ]

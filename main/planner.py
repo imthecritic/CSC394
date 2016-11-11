@@ -13,7 +13,7 @@ class Planner:
         self.rt     = rt
         self.reqs   = rq
         
-    quarters = ["Fall","Winter","Spring"]
+    #quarters = ["Fall","Winter","Spring"]
     #test comment
     #takes list of possible courses, start date, end date, class taking rate, number of credits needed 
     def plan(self, courses, taken, start, rate,credits):

@@ -1,5 +1,7 @@
+#from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 #Course Table
@@ -44,3 +46,9 @@ class CompletedClasses(models.Model):
     studentID   = models.ForeignKey(Users)
     courseID    = models.ForeignKey(Courses)
 
+class SavedPaths(models.Model):
+    id      = models.AutoField(primary_key=True)
+    created = models.DateTimeField(default=datetime.now, blank=True)
+    user_id = models.ForeignKey(Users)
+    path    = models.CharField(max_length=2000)
+    

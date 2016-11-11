@@ -8,9 +8,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from main.models import Users, Degrees, Courses, DegreeRequirements, CompletedClasses
+from main.models import Users, Degrees, Courses, DegreeRequirements, CompletedClasses, SavedPaths
 from main.frms import AccountForm, RegistrationForm, StudentReadOnly, PlanForm
 from main.planner import Planner
+import json
 
 #INDEX PAGE
 def index(request):
@@ -25,7 +26,6 @@ def loginPage(request):
         
         if user is not None:
             login(request,user)
-            print("success")
             return render(request, 'main/index.html', {})
         else:
             return HttpResponseRedirect('login')
@@ -42,10 +42,8 @@ def register(request):
         d.save()
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
-        print(request.POST)
         if form.is_valid():
             user = form.save()
-            print(user.id)
             # a = User.objects.get(id=user.id)
             # newusr = Users()
             # newusr.usr_acct = a
@@ -83,8 +81,7 @@ def plan(request):
         deg_cred = Degrees.objects.get(id = mjr)
         reqs_cls    = DegreeRequirements.objects.filter(degree_id__id = mjr).order_by('-required','course_id__course_id')
         reqs    = [req.course_id for req in reqs_cls]
-        for r in reqs: print (r.course_id)
-        print (" \n\n")
+
         courses = Courses.objects.all()
         courses = [c for c in courses if c not in reqs]
         courses = reqs + courses
@@ -99,6 +96,15 @@ def plan(request):
 
         plnr    = Planner(start, mjr, rate, reqs)
         myplan  = plnr.plan(courses, taken, start, rate, deg_cred.reqcredits)
+        #if user is logged in  - store path 
+        if request.user.is_authenticated():
+            myplan_json = json.dumps(myplan)
+            print(len(myplan_json))
+            usr = Users.objects.get(usr_acct=request.user.id)
+            new_path = SavedPaths()
+            new_path.user_id = usr
+            new_path.path = myplan_json
+            new_path.save()
         
     form = PlanForm()
     return render(request,'main/plan.html',{'form':form,'plan':myplan})
@@ -106,6 +112,8 @@ def plan(request):
 @login_required(login_url='login')
 def account(request):
     classes_taken = CompletedClasses.objects.filter(studentID = request.user.id)
+    paths = SavedPaths.objects.filter(user_id = request.user.id)
+    
     permission = False
     if request.method == 'POST':
         form = AccountForm(request.POST)
@@ -118,7 +126,7 @@ def account(request):
         #if user is faculty add a list of students they can assume identity of. 
         form = AccountForm(initial={'first':usrinfo.first_name,'last':usrinfo.last_name,'email':usrinfo.email,'usrname':usrinfo.username,'fclty':usr.isFaculty,'enrled':usr.isEnrolled})
     studentlst = Users.objects.filter(isFaculty=False)
-    return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken, 'studentlst':studentlst,'permission':permission})
+    return render(request,'main/account.html',{'form':form, 'classes_taken':classes_taken, 'studentlst':studentlst,'permission':permission, 'paths':paths})
 
 @login_required(login_url='login')
 def addClass(request):
@@ -155,6 +163,13 @@ def view_student(request, username):
     #if user is faculty add a list of students they can assume identity of. 
     form = StudentReadOnly(initial={'first':usrinfo.first_name,'last':usrinfo.last_name,'email':usrinfo.email,'usrname':usrinfo.username,'enrled':stu2.isEnrolled})
     return render(request,'main/view_student.html',{'form':form, 'classes_taken':classes_taken})
+    
+    
+@login_required(login_url='login')
+def view_path(request, pth_id):
+    pth = SavedPaths.objects.get(id=pth_id)
+    pth = json.loads(pth.path)
+    return render(request, 'main/view_path.html', {'path':pth})
     
 def about(request):
     pass
