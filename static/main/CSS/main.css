@@ -7,6 +7,18 @@ h2{
     color: rgb(30,91,148);
 }
 
+#login{
+    text-align: left !important;
+
+}
+
+.path_remove{
+    margin-left:1%;
+    moz-border-radius: 15px;
+     -webkit-border-radius: 15px;
+     border: none;
+}
+
 body{
     background-color:white;
 }

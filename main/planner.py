@@ -16,19 +16,17 @@ class Planner:
     #quarters = ["Fall","Winter","Spring"]
     #test comment
     #takes list of possible courses, start date, end date, class taking rate, number of credits needed 
-    def plan(self, courses, taken, start, rate,credits):
+    def plan(self, courses, taken, start, rate,credits,reqs):
         print("  \n\n\n")
         courses_taken   = list(taken)
         courses_taken    = [cls.courseID.course_id.lower() for cls in taken]
-        print (courses_taken)
         schedule    = []
         tsched      = []
         allclasses      = list(copy.deepcopy(courses))
-        for c in allclasses: print(c.name)
         term = int(copy.deepcopy(start))
         rate = int(rate)
         initial = state(courses_taken,tsched, [],allclasses, term,rate,rate)
-        options = self.getSuccessors(initial)
+        options = self.getSuccessors(initial, credits)
         cls_cntr = 0
         maxsize = 0
         #search loop  - while options have not been exhausted
@@ -42,27 +40,27 @@ class Planner:
                 for c in current.schedule: print (c.name, c.course_id)
                 print("  ")
                 maxsize = len(current.schedule)
-            if self.isGoal(current, credits):
+            if self.isGoal(current, credits, reqs):
                 print (current.schedule)
                 print ("finished")
-                print (current.termsched)
                 return self.beautify_planner(current.schedule, start, rate)
             else:
                 if cls_cntr == rate:#number of classes for term has been acheived
                     cls_cntr = 0
                     term = term + 1 #set new term
                     if term == 4: term = 1
-            options = self.getSuccessors(current) + options
+            options = self.getSuccessors(current, credits) + options
         
         print ("done")       
         return [] # loop has failed         
                     
          
             
-    def isGoal(self, opt, degreecredits):#return true if schedule is satisfied
+    def isGoal(self, opt, degreecredits, reqs):#return true if schedule is satisfied
+        print ((len(opt.taken) + len(opt.termsched)) *4)
         if ((len(opt.taken) + len(opt.termsched)) *4 >= degreecredits):
             tkn = [c.course_id.lower() for c in opt.termsched] + opt.taken
-            reqs = [c.course_id.lower() for c in self.reqs] 
+            reqs = [c.course_id.lower() for c in reqs]
             for r in reqs:
                 if r not in tkn: 
                     return False
@@ -71,10 +69,12 @@ class Planner:
         else:
             return False
     
-    def getSuccessors(self, plnr):
+    def getSuccessors(self, plnr, credits):
         options = []
         
         i = 0
+        #if ((len(plnr.taken) + len(plnr.termsched)) *4 >= credits+20):
+        #    return options
         for course in plnr.available:
             if self.validPrereq(course, plnr.taken) and  self.offered(course,plnr.currterm): #course is valid insert to options
                 #print course.name, course.course_id, "GOOD"
@@ -125,7 +125,7 @@ class Planner:
                 new_plan.append(curr)
                 curr = []
                 curr.append(term_names[st])
-        if len(curr) != 0:
+        if len(curr) > 1:
             new_plan.append(curr)
         return new_plan
     

@@ -5,15 +5,29 @@
         <form method="post" action="account">
              {% csrf_token %}
              {{ form.as_p }}
-             
-            <h3>Classes Taken</h3>
-            {% for class in classes_taken %}
-                <div class="row">
-                    <h4>{{ class.name }}</h4>
-                    <input class="btn btn-primary" value="Remove"/>
-                </div>
-            {% endfor %}
         
         </form>
+        <h3>My Plans</h3>
+            {% if saved_paths %}
+                {% for pth in saved_paths %}
+                    <div class="row">
+                        {% url 'view_path' pth.id as path_url %}
+                        <a href="view_path/{{pth.id}} "><input class="btn btn-default" value="{{ pth.created|date:'Y-m-d H:i' }}"></a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>This student has no plans yet.</p>
+            {% endif %}
+            
+        <h3>Classes Taken</h3>
+            {% if classes_taken %}
+                {% for class in classes_taken %}
+                    <div class="row">
+                        <p class="class_taken">{{ class.courseID.course_id }} : {{ class.courseID.name }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>This student hasn't taken any classes yet!</p>
+            {% endif %} 
     </div>
 {% endblock %}

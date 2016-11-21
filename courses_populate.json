@@ -72,7 +72,7 @@
         "description" :"An introductory graduate course on computer systems topics.",
         "prereq" : "CSC401",
         "credits": 4,
-        "fall" : 1,
+        "fall" : 0,
         "winter": 1,
         "spring" : 1,
         "summer": 1,
@@ -106,7 +106,7 @@
         "credits": 4,
         "fall" : 1,
         "winter": 1,
-        "spring" : 1,
+        "spring" : 0,
         "summer": 1,
         "dormant": 0
         }
@@ -136,7 +136,7 @@
         "description" :"Programming paradigms and language concepts: functional programming.",
         "prereq" : "CSC403 and CSC406",
         "credits": 4,
-        "fall" : 0,
+        "fall" : 1,
         "winter": 0,
         "spring" : 1,
         "summer": 0,
@@ -155,7 +155,7 @@
         "fall" : 0,
         "winter": 1,
         "spring" : 0,
-        "summer": 0,
+        "summer": 1,
         "dormant": 0
         }
   },
@@ -168,7 +168,7 @@
         "description" :"Principle, techniques and tools of object-oriented modeling, design, implementation, and testing.",
         "prereq" : "CSC403",
         "credits": 4,
-        "fall" : 1,
+        "fall" : 0,
         "winter": 1,
         "spring" : 1,
         "summer": 1,
@@ -186,7 +186,7 @@
         "credits": 4,
         "fall" : 1,
         "winter": 1,
-        "spring" : 1,
+        "spring" : 0,
         "summer": 1,
         "dormant": 0
         }
@@ -217,7 +217,7 @@
         "prereq" : "SE452",
         "credits": 4,
         "fall" : 0,
-        "winter": 0,
+        "winter": 1,
         "spring" : 1,
         "summer": 0,
         "dormant": 0
@@ -534,7 +534,7 @@
         "course_id": "IS560",
         "name" : "Enterprise Systems",
         "description" :"An introduction to enterprise systems for data and process integration, including ERP systems. ",
-        "prereq" : "*Advanced Standing*",
+        "prereq" : "IS421 and IS430",
         "credits": 4,
         "fall" : 1,
         "winter": 1,

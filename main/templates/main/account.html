@@ -9,38 +9,44 @@
             <input class="btn btn-primary submitbtn" type="submit" value="Update Account" />           
         </div>
         </form>
-
-        {% if permission %}
-        <h3>Students</h4>
-        {% for stu in studentlst %}
-            <div class="row">
-                {% url 'view_student' username=stu.usr_acct.username as student_url %}
-                <a href="view_student/{{ stu.usr_acct.username }}"><input class="btn btn-default" value="{{ stu.usr_acct.username }}"></a>
-            </div>
-        {% endfor %}
-        
-        {%else %}
-        
-                <form method="post" action="addClass">
-        <h3>My Plans</h3>
-            {% for pth in paths %}
-                <div class="row">
-                    {% url 'view_path' id=pth.id as path_url %}
-                    <a href="view_path/{{ pth.id }}"><input class="btn btn-default" value="{{ pth.created|date:'Y-m-d H:i' }}"></a>
-                </div>
-            {% endfor %}
+        <form method="post" action="removePlan">
+            <h3>My Plans</h3>
+            {% if paths %}
+                {% for pth in paths %}
+                    <div class="row">
+                        {% url 'view_path' id=pth.id as path_url %}
+                        <a href="view_path/{{ pth.id }}"><input class="btn btn-default" value="{{ pth.created|date:'Y-m-d H:i' }}"></a><input name="removePat{{pth.id}}" class="btn-danger path_remove" type="submit" value="X">
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p><a href="{% url 'plan' %}">Get Started!</a></p>
+            {% endif %}
+        <hr>
+        </form>
+        <form method="post" action="addClass">
         <h3>Classes Taken</h3>
-            {% for class in classes_taken %}
-                <div class="row">
-                    <p class="class_taken">{{ class.courseID.course_id }} : {{ class.courseID.name }}</p>
-                </div>
-            {% endfor %}
-        <input name="addclass"/><input class="btn btn-primary submitbtn" type="submit" value="Add Class"/>
+            {% if classes_taken %}
+                {% for class in classes_taken %}
+                    <div class="row">
+                        <p class="class_taken">{{ class.courseID.course_id }} : {{ class.courseID.name }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p> You have't taken any classes yet!</p>
+            {% endif %} 
+            <input name="addremoveclass"/>
+            <input name="addclass" class="btn btn-primary submitbtn" type="submit" value="Add Class"/>
+            <input name="removeclass" class="btn btn-primary submitbtn" type="submit" value="Remove Class"/>
         </form>
-        <form method="post" action="removeClass">
-                <input name="removeClass"/><input class="btn btn-primary submitbtn" type="submit" value="Remove Class"/>
-        </form>
+        <hr>
+        {% if permission %}
+            <h3>Students</h4>
+                {% for stu in studentlst %}
+                    <div class="row">
+                        {% url 'view_student' username=stu.usr_acct.username as student_url %}
+                        <a href="view_student/{{ stu.usr_acct.username }}"><input class="btn btn-default" value="{{ stu.usr_acct.username }}"></a>
+                    </div>
+                {% endfor %}
         {% endif %}
     </div>
 {% endblock %}
-
