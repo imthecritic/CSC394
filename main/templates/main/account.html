@@ -15,7 +15,7 @@
                 {% for pth in paths %}
                     <div class="row">
                         {% url 'view_path' id=pth.id as path_url %}
-                        <a href="view_path/{{ pth.id }}"><input class="btn btn-default" value="{{ pth.created|date:'Y-m-d H:i' }}"></a><input name="removePat{{pth.id}}" class="btn-danger path_remove" type="submit" value="X">
+                        <a href="view_path/{{ pth.id }}"><input class="btn btn-default" value="{{ pth.created|date:'Y-m-d H:i' }}"></a><input name="removePath_{{pth.id}}" class="btn-danger path_remove" type="submit" value="X">
                     </div>
                 {% endfor %}
             {% else %}
