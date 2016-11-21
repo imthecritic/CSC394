@@ -81,7 +81,7 @@ def plan(request):
         deg_cred = Degrees.objects.get(id = mjr)
         reqs_cls    = DegreeRequirements.objects.filter(degree_id__id = mjr).order_by('-required','course_id__course_id')
         reqs    = [req.course_id for req in reqs_cls if req.required == True]
-        print reqs
+        print (reqs)
         courses = Courses.objects.all()
         courses = [c for c in courses if c not in reqs]
         courses = reqs + courses
@@ -172,7 +172,7 @@ def removePlan(request):
     try:
         for key in request.POST:
             pathID = key[head_len:]
-            print pathID
+            print (pathID)
             if "removePath_" in key:
                 SavedPaths.objects.filter(user_id = request.user.id, id = pathID).delete()
                 return HttpResponseRedirect('account')
