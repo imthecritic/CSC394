@@ -117,7 +117,7 @@ class Planner:
         curr.append(term_names[st])
         for cls in planner:
             curr.append(cls.course_id + ": " + cls.name)
-            print cls.name
+            print (cls.name)
             i += 1
             if i % (rate) == 0:
                 st += 1
