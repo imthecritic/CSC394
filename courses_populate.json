@@ -136,10 +136,10 @@
         "description" :"Programming paradigms and language concepts: functional programming.",
         "prereq" : "CSC403 and CSC406",
         "credits": 4,
-        "fall" : 1,
-        "winter": 1,
+        "fall" : 0,
+        "winter": 0,
         "spring" : 1,
-        "summer": 1,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -152,10 +152,10 @@
         "description" :"A core graduate course in database design and implementation.",
         "prereq" : "CSC403",
         "credits": 4,
-        "fall" : 1,
+        "fall" : 0,
         "winter": 1,
-        "spring" : 1,
-        "summer": 1,
+        "spring" : 0,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -200,10 +200,10 @@
         "description" :"Applying object-oriented techniques in the design, development, and integration of server-side enterprise applications.",
         "prereq" : "CSC403",
         "credits": 4,
-        "fall" : 1,
+        "fall" : 0,
         "winter": 1,
-        "spring" : 1,
-        "summer": 1,
+        "spring" : 0,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -216,10 +216,10 @@
         "description" :"Focus on software for developing web-based thin client applications.",
         "prereq" : "SE452",
         "credits": 4,
-        "fall" : 1,
-        "winter": 1,
+        "fall" : 0,
+        "winter": 0,
         "spring" : 1,
-        "summer": 1,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -233,9 +233,9 @@
         "prereq" : "SE450",
         "credits": 4,
         "fall" : 1,
-        "winter": 1,
-        "spring" : 1,
-        "summer": 1,
+        "winter": 0,
+        "spring" : 0,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -249,9 +249,9 @@
         "prereq" : "SE430",
         "credits": 4,
         "fall" : 1,
-        "winter": 1,
-        "spring" : 1,
-        "summer": 1,
+        "winter": 0,
+        "spring" : 0,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -280,10 +280,10 @@
         "description" :"This is the continuation of SE 491.",
         "prereq" : "SE491",
         "credits": 4,
-        "fall" : 1,
+        "fall" : 0,
         "winter": 1,
-        "spring" : 1,
-        "summer": 1,
+        "spring" : 0,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -651,7 +651,7 @@
         "fall" : 1,
         "winter": 1,
         "spring" : 1,
-        "summer": 1,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -680,10 +680,10 @@
         "description" :"The course focuses on how organizations can use leverage of scale as a source for cost reduction; leverage of expertise for improved superior IT performance; leverage of access (e.g. location) to develop new strategies. ",
         "prereq" : "IS560",
         "credits": 4,
-        "fall" : 1,
+        "fall" : 0,
         "winter": 1,
-        "spring" : 1,
-        "summer": 1,
+        "spring" : 0,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -699,7 +699,7 @@
         "fall" : 1,
         "winter": 1,
         "spring" : 1,
-        "summer": 1,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -712,10 +712,10 @@
         "description" :"This course will introduce students to fundamental principles of systems engineering for large and complex software intensive systems. ",
         "prereq" : "( SE477 or PM430 or IS430 ) and ( SE430 or SE482 or IS485 )",
         "credits": 4,
-        "fall" : 1,
-        "winter": 1,
+        "fall" : 0,
+        "winter": 0,
         "spring" : 1,
-        "summer": 1,
+        "summer": 0,
         "dormant": 0
         }
   },
@@ -809,9 +809,9 @@
         "prereq" : "CSC453 or CSC454",
         "credits": 4,
         "fall" : 1,
-        "winter": 1,
-        "spring" : 1,
-        "summer": 1,
+        "winter": 0,
+        "spring" : 0,
+        "summer": 0,
         "dormant": 0
         }
   },
